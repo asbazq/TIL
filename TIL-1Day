@@ -1,0 +1,350 @@
+셀레니움
+
+from selenium import webdriver
+
+//크롬드라이버사용
+driver = webdriver.Chrome('chromedriver.exe')
+//크롤링할 주소
+base_url = 'https://www.7-eleven.co.kr/product/7prodList.asp'
+driver.get(base_url)
+//js사용
+driver.execute_script("javascript: fncTab('8');")
+
+import time
+def get_product_code():
+    is_reached_final_page = False
+    //반복문 실행 후 들어갈 리스트 생성
+    buffer = []
+
+    //fncMoreExist가 없을 때까지 반복
+    while True:
+        fncMoreExist = False
+
+        //드라이버를 사용하여 id 'listUl'찾기
+        ul_tag = driver.find_element_by_id('listUl')
+        //ul_tag에서 css 'li > a' 찾기
+        a_tag_list = ul_tag.find_elements_by_css_selector('li > a')
+
+        for tag in a_tag_list:
+            href = tag.get_attribute('href')
+            start_index = href.find("javascript: ")
+            href = href[start_index:]
+            if href.startswith("javascript: fncMore"):
+                //js인 fncMore('8')실행
+                driver.execute_script("javascript: fncMore('8');")
+                //속도 조절
+                time.sleep(1)
+                //fncMoreExist 확인
+                fncMoreExist = True
+        //없으면 종료
+        if not fncMoreExist:
+            break
+
+
+    ul_tag = driver.find_element_by_id('listUl')
+    a_tag_list = ul_tag.find_elements_by_css_selector('li > a')
+    for tag in a_tag_list:
+        //tag 요소 속성중 'href'에 해당하는 속성 값을 추출
+        href = tag.get_attribute('href')
+        start_index = href.find("'")
+        href = href[start_index + 1: start_index + 7]
+        
+        //길이로 값 한정
+        if len(href) == 6:
+            buffer.append(href)
+    return buffer
+        
+
+
+product_code = []
+buffer = get_product_code()
+product_code = product_code + buffer
+
+print(product_code)
+
+//제품의 정보
+def get_product_info():
+    title = driver.find_element_by_class_name('tit_product_view').text
+    content = driver.find_element_by_class_name('productView_content_dd_01').text
+    price = driver.find_element_by_class_name('product_price').text
+    img_tag = driver.find_element_by_css_selector('div.product_img > span > img')
+    img_url = img_tag.get_attribute('src')
+
+    return title, content, price, img_url
+
+result = []
+
+for code in product_code:
+    driver.execute_script(f"javascript: fncGoView('{code}');")
+    info = get_product_info()
+    result.append(info)
+    
+    //뒤로가기
+    driver.back()
+
+# %%
+result
+
+//atag sample
+'''
+atag = driver.find_element_by_css_selector('ul.tab_layer04 > li:nth-child(2) > a')
+'''
+//sample
+#listUl > li:nth-child(2) > a
+#listUl > li:nth-child(13) > a
+
+//몽고DB에 삽입
+import pymongo
+from pymongo import MongoClient
+
+user = 'test'
+passwd = 'sparta'
+client = MongoClient(f'mongodb+srv://{user}:{passwd}@cluster0.cjcfr.mongodb.net/Cluster0?retryWrites=true&w=majority')
+db = client.store
+
+for i in result:
+    doc = {
+        'title' : i[0],
+        'content' : i[1],
+        'price' : i[2],
+        'image' : i[3]
+    }
+    db.store.insert_one(doc)
+
+1. Selenium으로 DOM요소 선택 - 요소를 찾지 못하면 NoSuchElementException 발생
+
+처음요소를 추출
+
+
+find_element_by_id(id)
+id속성으로 요소를 하나 추출
+
+find_element_by_name(name)
+name 속성으로 요소를 하나 추출
+
+모든 요소를 추출
+
+find_element_by_css_selector(query)
+css 선택자로 요소를 하나 추출
+
+find_element_xpath(query)
+xpath를 지정해 요소를 하나 추출
+
+find_element_by_tag_name(name)
+태그 이름이 name에 해당하는 요소를 하나 추출
+
+find_element_by_link_text(text)
+링크 텍스트로 요소를 추출
+
+find_element_by_partial_link_text(text)
+링크의 자식 요소에 포함되 있는 텍스트로 요소를 하나 추출
+
+find_element_by_class_name(name)
+클래스 이름이 name에 해당하는 요소를 하나 추출
+
+find_element_by_css_selector(query)
+css 선택자로 요소를 여러개 추출
+
+find_element_by_xpath(query)
+xpath를 지정해 요소를 여러개 추출
+
+find_element_by_tag_name(name)
+태그이름이 name에 해당하는 요소를 여러개 추출
+
+find_element_by_class_name(name)
+클래스 이름이 name에 해당하는 요소를 여러개 추출
+
+find_element_by_partial_link_text(text)
+링크의 자식 요소에 포함돼 있는 텍스트로 요소를 여러개 추출
+
+
+
+
+​
+2. Selenium으로 요소르르 조작하기
+
+clear()
+글자를 지운다
+
+click()
+요소를 클릭
+
+get_attribute(name)
+요소 속성중 name에 해당하는 속성 값을 추출
+
+is_displayed()
+요소가 화면에 출력되는지 확인
+
+is_enabled()
+요소가 활성화돼 있는지 확인
+
+is_selected()
+체크박스 등의 요소가 선택된 상태인지 확인
+
+screenshot(filename)
+스크린샷
+
+send_keys(value)
+키를 입력
+
+submit()
+입력 양식을 전송
+
+value_of_css_property(name)
+name에 해당하는 css속성 값을 추출
+
+id
+id
+
+location
+요소의 위치
+
+parent
+부모요소
+
+rect
+크기와 위치 정보를 가진 사전자료형 리턴
+
+screenshot_as_base64
+스크린샷을 base64로 추출
+
+screenshot_as_png
+스크린샷을 png형식의 바이너리로 추출
+
+size
+요소의 크리
+
+tag_name
+태그 이름
+
+text
+요소의 내부 글자
+
+3. send_key()에서 특수키 입력
+from selenium.Webdriver.common.keys import Keys
+
+
+ARROW_DOWN / ARROW_LEFT / ARROW_RIGHT / ARROW_UP
+BACKSPACE / DELETE / HOME / END /INSERT /
+ALT / COMMAND / CONTROL / SHIFT
+ENTER / ESCAPE /SPACE / TAB
+F1 / F2 / F3 ............./ F12
+​
+​
+4. Selenium 드라이버 조작
+
+add_cookie( cookie_dict)
+쿠키값을 사전 형식으로 지정
+
+back() / forward()
+이전 페이지/ 다음페이지
+
+close()
+브라우저 닫기
+
+current_url
+현재 url
+
+delete_all_cookies()
+모든 쿠키 제거
+
+delete_cookie(name)
+name에 해당하는 쿠키 제거
+
+execute( command, params)
+브라우저 고유의 명령어 실행
+
+execute_async_script( script, *args)
+비동기 처리하는 자바스크립트를 실행
+
+execute_script( script, *args)
+동기 처리하는 자바스크립트를 실행
+
+get(url)
+웹 페이지를 읽어들임
+
+get_cookie( name)
+특정 쿠키 값을 추출
+
+get_cookies()
+모든 쿠키값을 사전 형식으로 추출
+
+get_log(type)
+로그를 추출(type: browser/driver/client/server)
+
+get_screenshot_as_base64()
+base64형식으로 스크린샷을 추출
+
+get_screenshot_as_file(filename)
+스크린샷을 파일로 저장
+
+get_screenshot_as_png()
+png형식으로 스키란샷의 바이너리를 추출
+
+get_window_position(windowHandle='current')
+브라우저의 위치를 추출
+
+get_window_size( windowHandle='current')
+브라우저의 크기를 추출
+
+implicitly_wait(sec)
+최대 대기 시간을 초 단위로 지정해서 처리가 끈날때 까지 대기
+
+quit()
+드라이버를 종료 시켜 브라우저 닫기
+
+save_screenshot(filename)
+스크린샷 저장
+
+set_page_load_timeout( time_to_wait)
+페이지르르 읽는 타임아웃 시간을 지정
+
+set_script_timeout(time_to_wait)
+스크립트의 타임아웃 시간을 지정
+
+set_window_position(x,y,windowHandle='current')
+브라우저 위치를 지정
+
+set_window_size(width, height, windowHandle='current')
+브라우저 크기를 지정
+
+title
+현재 타이틀을 추출
+            
+                
+출처: https://fenderist.tistory.com/168 [Devman:티스토리]
+
+[Python] 로그인이 필요한 페이지를 스크래핑하는 방법
+1. session을 생성 sess = requests.session() 
+2. login api를 찾아서 호출 login = {     'email': user,     'password': pw } url = 'https://www.testsite.com/login_client.do' res = sess.post(url, data=login) 
+3. 오류 발생시 예외 발생  res.raise_for_status()  
+4. 로그인이 필요한 페이지를 호출 url_p = 'ttps://www.testsite.com/page/mydata.do' res = sess.get(url_p) res.raise_for_status() 
+5. 페이지 html 출력해보기 soup = BeautifulSoup(res.text, 'html.parser') print(soup.html.body) 
+
+
+from urllib.parse import urljoin 
+import requests 
+from bs4 import BeautifulSoup 
+import urllib.request as req 
+
+user = 'test@name.com' 
+pw = '1234weqr' 
+
+sess = requests.session() 
+
+login = { 
+    'email': user, 
+    'password': pw 
+} 
+
+url = 'https://www.testsite.com/login_client.do' 
+res = sess.post(url, data=login) 
+res.raise_for_status() 
+
+url_p = 'ttps://www.testsite.com/page/mydata.do' 
+res = sess.get(url_p) 
+res.raise_for_status() 
+
+soup = BeautifulSoup(res.text, 'html.parser') 
+print(soup.html.body) 
+출처: https://fenderist.tistory.com/167?category=717421 [Devman:티스토리]
