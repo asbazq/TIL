@@ -1,0 +1,50 @@
+
+	S.A. 링크	https://jjseong.tistory.com/3
+	Github URL	https://github.com/JJSEONG/sparta-ch1-9th
+로그인&회원가입 : 최용찬 님
+메인페이지 : 정종성 님 & 구자현 님
+세부페이지 : 장정훈 님"
+"2022. 5. 12
+회고 멘토링"	"Trouble Shooting
+(우리 팀이 해결한 문제 정리)
+1. git branch 에 올린 내용이 main 과 full requests가 되지 않았다.
+: default branch를 main이 아닌 master 에서 branch를 생성하여 올렸기 때문에 가지가 맞지 않아
+full requests가 진행되지 않음을 알아내고 main에서 branch 생성 후 full requests 진행!
+
+ 2. 데이터 직렬화 문제
+MongoDB ObjectID와 같은 경우 기본적으로 지원하는 직렬화 기능은 적용하지 못한다.
+그래서 직렬화 라이브러리를 사용해야 하는데 bson을 채택했다. (dumps())
+해당 메서드는 한글 인코딩/디코딩은 지원하지 않는다. 그렇기 때문에 이후 view layer에서 JSON.parse()역직렬화를 진행해주어야 한다.
+
+3. MongoDB 페이지네이션
+무한 스크롤 기능을 위해 12개씩 페이징처리를 해야 했다. 그러기 위해서는 페이징 처리를 위한 확실한 기준점이 필요했는데 
+기본적으로 생성해주는 ObjectID가 Insert된 TimeStamp를 인코딩한 값인 것을 알게되어 이를 기준으로 페이징 처리를 구현했다.
+
+4. IntersectionObserver 중단점 에러
+가져온 아이템이 12개 이하일 때 무한 스크롤은 더 이상 필요하지 않기 때문에 IntersectionObserver를 중단해야 한다. 
+이를 위해 unobserve()를 사용했는데 곧바로 중단되는 것이 아닌 한번 더 실행되고 중지가 되어 타입 에러가 발생했다.
+IntersectionObserver는 Observing Target을 감시하며 해당 컴포넌트가 display:none이 되면 멈추는 방식이기 때문에 
+unObserve()가 아닌 Observe 대상인 last-pointer를 감추니 작동이 잘 되었다.
+
+5. Flask Handler Annotation
+우리 서비스는 로그인을 해야지만 사용이 가능한 서비스이다. 문제는 URL을 강제적으로 입력하면 접근이 가능해진다.
+모든 메서드에 토큰 감지 기능을 체크하기는 너무 중복되는 코드가 많아지기 때문에 Spring AOP, Servlet Filter와 같은 
+매 HTTP 요청을 감지하는 메서드가 필요했는데 Flask Handler Annotation을 지원해주고 있었다.
+@app.before_request를 통해 제외할 링크는 제외하고 모든 요청마다 토큰의 소지 유무를 감지할 수 있게 만들었다.
+
+ 6. 좋아요 기능 문제
+무한 스크롤 기능을 쉽게 구현하기 위해 상품을 가져오는 로직을 ajax로 꾸미게 되었다. 
+문제는 아이템 컴포넌트에 포함되어 있는 좋아요 컴포넌트에 이벤트를 추가해주어야 하는 상황이라는 것.
+  매 반복문마다 넣어 주기로 입력했지만, 가장 첫번째 아이템만 해당 기능이 먹혔다.
+이 문제를 해결하기 위해 이벤트 버블링을 통해 아이템 리스트 전체에 이벤트를 걸고 class를 비교해 
+원하는 컴포넌트만 이벤트가 작동하게 만들었다.
+"
+	"회고 멘토링 Questions
+(멘토링 시간에 답변을 얻고 싶은 질문들)"	
+"1. 프로필 사진 변경 시 No such file or directory 문제가 생김. 
+=>pass문제 상대경로로, 고정 경로static이기 때문에 파일을 가져올 수 없음
+
+2. MongoDB 1:N 연관관계를 맺기 위해 
+배열형식으로 집어넣기, Embedded Document, Document Reference 패턴이 있던데
+현업에서는 주로 셋 중 어느것을 주로 채택하는지?"
+=>몽고DB말고 관계형DB를 사용, 굳이 몽고DB안씀
