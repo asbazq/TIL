@@ -1,6 +1,6 @@
 # TIL
  
- -당일 깨달은 내용 정리
+ *당일 깨달은 내용 정리
 
 [Namjun Kim](https://github.com/namjunemy)님, [RingoPPA](https://github.com/ksu3101)님의 Github TIL 참조.
 
