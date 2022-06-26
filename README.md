@@ -7,7 +7,7 @@
 ## 작성 규칙
 
 * 폴더와 파일명은 영문으로 작성한다.
-*[Github-Flavoured Markdown](https://guides.github.com/features/mastering-markdown/)으로 작성하고 파일 확장자는 `md`. 
+* [Github-Flavoured Markdown](https://guides.github.com/features/mastering-markdown/)으로 작성하고 파일 확장자는 `md`. 
 
 ## 분류
 
