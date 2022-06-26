@@ -11,6 +11,7 @@
 
 ## 분류
 
-### Java
+### Python
 
 * [API]
+* [JWT]
