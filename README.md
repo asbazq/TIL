@@ -14,4 +14,4 @@
 ### Python
 
 * [API](https://github.com/asbazq/TIL/blob/main/python/API.md)
-* [JWT]
+* [JWT](https://github.com/asbazq/TIL/blob/main/python/JWT.md)
