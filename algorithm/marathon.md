@@ -656,7 +656,6 @@ ArrayList클래스는 패키지에서 찾을 수 있는 크기 조정 가능한 
                      }
                      answer += str[i];
                  }
-                 System.out.println(answer);
                  return answer;
              }
          }
