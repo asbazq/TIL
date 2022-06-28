@@ -275,7 +275,12 @@ answer이 Long이므로 x도 Long으로 변환
            }
          }
          
-* LocalDate.of(입력날짜), getDayOfWeek()해당 요일
+* LocalDate.of(입력날짜)**날짜 정보**만 출력 객체 생성 시 LocalDate targetDate = LocalDate.of(2019,11,12)`클래스_이름  객체_이름 = new 클래스_이름()`, [참고블로그](https://java119.tistory.com/52)
+* LocalTime **시간 정보**
+* LocaldateTime **날짜 시간 정보**
+* `LocaDate.of()`.getDayOfWeek()해당 요일
+* `객체`.plusyears(),minusyears()... 년,월, 일...더하기 빼기
+* Localdate를 사용할 시 time 패키지를 경로의 Localdate 클래스를 호출해야 한다. ex) import java.time.LocalDate
 
 * 다른방법
 
@@ -413,4 +418,245 @@ ArrayList클래스는 패키지에서 찾을 수 있는 크기 조정 가능한 
 
                   System.out.println(iter.next());
 
+         }
+         
+# 내적
+
+         class Solution {
+             public int solution(int[] a, int[] b) {
+                 int answer = 0;
+
+                 for (int i = 0; i < a.length; i++) {
+                     answer += a[i]*b[i];
+                 }
+                 return answer;
+             }
+         }
+
+# 문자열 내 p와 y의 개수
+
+         class Solution {
+             boolean solution(String s) {
+
+                 int count = 0;
+                 s = s.toLowerCase();
+
+                 for (int i = 0; i < s.length(); i++) {
+                     if (s.charAt(i) == 'p') count++;
+                     if (s.charAt(i) == 'y') count--;
+                 }
+
+                 System.out.println("Hello Java");
+
+                  return count == 0;
+             }
+         }
+
+* 정규 표현식
+
+         class Solution {
+             boolean solution(String s) {
+                 s = s.toUpperCase();
+
+                 return s.chars().filter( e -> 'P'== e).count() == s.chars().filter( e -> 'Y'== e).count();
+             }
+         }
+
+상시 사용 가능 공부하기
+
+# 문자열 다루기 기본
+
+         class Solution {
+             public boolean solution(String s) {
+                 boolean answer = true;
+
+                 if (s.length() != 4 && s.length() != 6) return false;
+                 for (int i = 0; i < s.length(); i++) {
+                     if (s.charAt(i) > 0 || s.charAt(i) < 9) return true;
+                     }
+                 return answer;
+             }
+         }
+         
+* 논리 연산자
+
+&&(and), ||(or), !(not) => a != b => !a.equals(b)
+
+* 다른 풀이
+
+         class Solution {
+           public boolean solution(String s) {
+               if(s.length() == 4 || s.length() == 6){
+                   try{
+                       int x = Integer.parseInt(s);
+                       return true;
+                   } catch(NumberFormatException e){
+                       return false;
+                   }
+               }
+               else return false;
+           }
+         }
+
+* NumberFormatException
+
+문자를 숫자로 변경시도하다가 에러가 발생하는 경우, try catch 사용하여 해결
+
+* 정규표현식
+
+         import java.util.*;
+
+         class Solution {
+           public boolean solution(String s) {
+                 if (s.length() == 4 || s.length() == 6) return s.matches("(^[0-9]*$)");
+                 return false;
+           }
+         }
+         
+         class Solution {
+           public boolean solution(String s) {
+             return (s.length() != 4 && s.length() != 6) || (s.split("[0-9]").length > 0) ? false:true;
+           }
+         }
+![정규표현식 문법](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Fq0afr%2Fbtq1bfbtrXL%2Fd8M2EshAkkHiAZeEBNswzK%2Fimg.png)
+![정규표현식 문법](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2Ft37Zg%2Fbtq09yiJ8mu%2FeIaCNKqj1kDfjT8vJjY0ek%2Fimg.png)
+ 
+ **자주사용하는 정규표현식**
+ 
+![자주사용](https://velog.velcdn.com/images%2Fsongs4805%2Fpost%2F261bdd15-7efd-49b0-b08b-20351a26a9d1%2F%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-09-04%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.03.00.png)
+
+# 서울에서 김서방 찾기
+
+         class Solution {
+             public String solution(String[] seoul) {
+                 String answer = "";
+
+                 for (int i = 0; i < seoul.length; i++) {
+                     if (seoul[i].equals("Kim") ) {
+                         answer = "김서방은 " + i + "에 있다";
+                     }
+                 }
+                 return answer;
+             }
+         }
+         
+* ==와 equals 차이
+
+ == 연산자는 비교하고자 하는 두개의 대상의 **주소값**을 비교, String클래스의 equals 메소드는 비교하고자 하는 두개의 대상의 **값 자체**를 비교
+문자열을 비교하려면 equals라는 메서드를 활용하여 두개의 값을 비교해주어야 한다.
+
+# 수박수박수박수박수박수?
+
+         class Solution {
+             public String solution(int n) {
+                 String answer = "";
+
+                 for (int i = 0; i < n; i++) {
+                     if (i % 2 ==0) {
+                         answer += '수';
+                     } else { answer += '박';
+                     }
+                 }
+                 return answer;
+             }
+         }
+         
+# 완주하지 못한 선수
+
+         import java.util.HashMap;
+
+         class Solution {
+             public String solution(String[] participant, String[] completion) {
+                 String answer ="";
+                 HashMap<String, Integer> map = new HashMap<>(); // 해쉬맵 선언 key는 String형태, value는 integer형태
+                 for(String par : participant) map.put(par, map.getOrDefault(par, 0) + 1); // for each문을 통해 hashmap에 participant 하나씩 꺼내 map에 넣어 값에+1, 동명이인을 판단하기 위해 map.getOrDefault(par, 0)사용, 동명이인이 있다면 participant의 value를 가져져와 더한다.
+                 for(String par : completion) map.put(par, map.get(par) -1 ); // for each문을 통해 hashmap에 participant 하나씩 꺼내 map에 넣어 값에-1
+                 for(String key : map.keySet()) {                                                  
+                  if(map.get(key) != 0) { // value값이 0이 아닌 값을 출력
+                           answer = key;
+                           System.out.println(answer);
+                           break;
+                  }
+                 }
+                 return answer;
+             }
+         }
+         
+* 다른 풀이
+
+         import java.util.*;
+         class Solution {
+             public String solution(String[] participant, String[] completion) {
+                 Arrays.sort(participant); // 선 정렬
+                 Arrays.sort(completion);
+                 int i;
+                 for ( i=0; i<completion.length; i++){ // 정렬로 같아진 순서로 비교
+
+                     if (!participant[i].equals(completion[i])){
+                         return participant[i]; // 일치하지 않는 participant 출력
+                     }
+                 }
+                 return participant[i]; // 끝까지 돌았다면 마지막 participant 
+             }
+         }
+
+ 
+ * 해쉬맵
+
+   - 해시맵은 이름 그대로 해싱(Hashing) <sup> 반복비교를 하지않고 키값을 사용하여 바로 값에 접근 </sup> 된 맵(Map).<sup> 키(Key)와 값(Value) 두 쌍으로 데이터를 보관하는 자료구조</sup> 키는 고유값, 값은 중복가능
+   -  배열과 연결이 결합된 형태.
+   -  hashing 기법을 사용하기 때문에 많은 양의 데이터가 저장될때 유용, 검색에 최고성능을 보인다.
+   -  추가/삭제/검색/접근성이 모두 뛰어나다.
+   -  순서가 유지되지 않는다. (순서유지가 필요하다면 LinkedHashMap을 사용한다.)
+
+
+ * 메소드
+
+
+         import java.util.HashMap; // HashMap을 사용할 시 util 패키지를 경로의 HashMap 클래스를 호출
+         
+         HashMap<String,String> map = new HashMap<String,String>(); // HashMap선언
+         
+         map.put(key,value); //값 추가
+         
+         map.remove(1); //key값 1 제거
+         
+         map.clear(); //모든 값 제거
+
+         출력
+
+         System.out.println(map); //전체 출력 : {1=사과, 2=바나나, 3=포도}
+
+         System.out.println(map.get(1));//key값 1의 value얻기
+
+         for(Integer i : map.keySet()){ // keySet() 메서드는 key의 값만 출력, 모든 키를 순회
+             System.out.println("[Key]:" + i + " [Value]:" + map.get(i))
+
+         for (Entry<Integer, String> entry : map.entrySet()) { //entrySet() 메서드는 key와 value의 값 모두 출력
+              System.out.println("[Key]:" + entry.getKey() + " [Value]:" + entry.getValue());
+
+# 이상한 문자 만들기
+
+         class Solution {
+             public String solution(String s) {
+                 String answer = "";
+                 s = s.toLowerCase();
+                 String[] str = s.split("");
+                 int uper = 0;
+
+
+                 for (int i = 0; i < str.length; i++) {
+                     if (str[i].equals(" ")) {
+                         uper = 0;
+                     } else if (uper % 2 == 0) {
+                         str[i] = str[i].toUpperCase();
+                         uper++;
+                     } else {
+                         uper++;
+                     }
+                     answer += str[i];
+                 }
+                 System.out.println(answer);
+                 return answer;
+             }
          }
