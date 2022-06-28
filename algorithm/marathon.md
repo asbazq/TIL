@@ -639,7 +639,7 @@ ArrayList클래스는 패키지에서 찾을 수 있는 크기 조정 가능한 
 
          class Solution {
              public String solution(String s) {
-                 String answer = "";
+                 String answer = ""; // 입력값에 ""가 붙어있어 제거
                  s = s.toLowerCase();
                  String[] str = s.split("");
                  int uper = 0;
@@ -647,14 +647,62 @@ ArrayList클래스는 패키지에서 찾을 수 있는 크기 조정 가능한 
 
                  for (int i = 0; i < str.length; i++) {
                      if (str[i].equals(" ")) {
-                         uper = 0;
+                         uper = 0; 
                      } else if (uper % 2 == 0) {
                          str[i] = str[i].toUpperCase();
                          uper++;
                      } else {
-                         uper++;
+                         uper++; // uper로 홀짝 구별 빈칸인 경우 0으로 처리하여 다음 문자 짝수 판정
                      }
                      answer += str[i];
+                 }
+                 return answer;
+             }
+         }
+
+# 자릿수 더하기
+
+         import java.util.*;
+
+         public class Solution {
+             public int solution(int n) {
+                 int answer = 0;
+
+                 while (n > 0){
+                     answer += n % 10;
+                     n/=10;
+                 }
+                 // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
+                 System.out.println("Hello Java");
+                 return answer;
+             }
+         }
+         
+* 다른 풀이
+
+         public class Solution {
+             public int solution(int n) {
+                 int answer = 0;
+                 String s = Integer.toString(n); //int n을 String으로 변환
+
+                 for(int i=0; i<s.length(); i++){
+                     answer += Integer.parseInt(s.substring(i, i+1));
+                 }
+                 return answer;
+             }
+         }
+         
+# 자연수 뒤집어 배열로 만들기
+         
+         class Solution {
+             public int[] solution(long n) {
+                 String s = String.valueOf(n);
+                 StringBuilder sb = new StringBuilder(s);
+                 sb = sb.reverse();
+                 String[] stringarr =sb.toString().split("");
+                 int[] answer = new int[sb.length()];
+                 for (int i = 0; i < sb.length(); i ++) {
+                     answer[i] = Integer.parseInt(stringarr[i]);
                  }
                  return answer;
              }
