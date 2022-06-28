@@ -669,7 +669,7 @@ ArrayList클래스는 패키지에서 찾을 수 있는 크기 조정 가능한 
                  int answer = 0;
 
                  while (n > 0){
-                     answer += n % 10;
+                     answer += n % 10; // 
                      n/=10;
                  }
                  // [실행] 버튼을 누르면 출력 값을 볼 수 있습니다.
@@ -697,12 +697,161 @@ ArrayList클래스는 패키지에서 찾을 수 있는 크기 조정 가능한 
          class Solution {
              public int[] solution(long n) {
                  String s = String.valueOf(n);
-                 StringBuilder sb = new StringBuilder(s);
+                 StringBuilder sb = new StringBuilder(s); // reverse메소드를 쓰기위해 Stringbuilder 사용
                  sb = sb.reverse();
                  String[] stringarr =sb.toString().split("");
                  int[] answer = new int[sb.length()];
                  for (int i = 0; i < sb.length(); i ++) {
                      answer[i] = Integer.parseInt(stringarr[i]);
+                 }
+                 return answer;
+             }
+         }
+         
+* point
+
+class Solution {
+  public int[] solution(long n) {
+ 
+        String a = "" + n; // 문자열 + 숫자 = 문자열을 이용하여 쉽게 long → String으로 할당가능,  String.split("")사용하여 String을 String[]으로 변환가능
+        
+        int[] answer = new int[a.length()];
+        
+        int cnt = 0;
+        
+        while (n > 0) {
+ 
+            // 1) 12345 % 10 = 5
+            // 2) 1234 % 10 = 4
+            // 3) 123 % 10 = 3
+            // 4) 12 % 10 = 2
+            // 5) 1 % 10 = 1
+            answer[cnt] = (int) (n % 10);
+ 
+            // 12345 = 1234
+            // 1234 = 123
+            // 123 = 12
+            // 12 = 1
+            // 1 = 0 ( 0.1 ) // 소수점 시 0이 되는 것을 이용
+            n /= 10;
+ 
+            cnt++;
+        }      
+        return answer;
+  }
+}
+https://retrieverj.tistory.com/42
+
+* String, Stringbuilder, StringBuffer
+
+String은 불변 concat, + 사용 시 기존 값을 버리고 새로 할당해서 느려짐
+**but** StringBuffer와 StringBuilder는 유동적으로 사용한다
+
+* StringBuffer, StringBuilder의 차이는?
+
+StringBuffer는 공통 메소드 동기화로 인해 멀티 스레드 환경에서만 사용
+
+그 외에는 StringBuilder를 사용하면 됨
+
+* StringBuffer, StringBuilder의 주요 메소드 
+
+sb.append(값) - StringBuffer, StringBuilder 뒤에 값을 붙인다
+
+sb.insert(인덱스, 값) - 특정 인덱스부터 값을 삽입한다
+
+sb.delete(인덱스, 인덱스) - 특정 인덱스부터 인덱스까지 값을 삭제한다
+
+sb.indexOf(값) - 값이 어느 인덱스에 들어있는지 확인한다
+
+sb.substring(인덱스, 인덱스) - 인덱스부터 인덱스까지 값을 잘라온다
+
+sb.length() - 길이 확인
+
+sb.replace(인덱스, 인덱스, 값) - 인덱스부터 인덱스까지 값으로 변경
+
+sb.reverse() - 글자 순서를 뒤집는다
+
+# 콜라츠 추측
+
+         class Solution {
+             public int solution(long num) { // 오버플로우로 int를 long으로 변경
+                 int answer = 0;
+
+                 while (num != 1) {
+                     if (num % 2 == 0) {
+                         num /= 2;
+                     } else {
+                         num = num*3 + 1;
+                     }
+                     answer++;
+
+                     if (answer > 500) return -1;
+                 }
+                 return answer;
+             }
+         }
+         
+# 정수 내림차순으로 정렬하기
+
+         import java.util.Arrays;
+         import java.util.Collections;
+
+         class Solution {
+             public long solution(long n) {
+
+                 String[] s = String.valueOf(n).split("");
+                 Arrays.sort(s, Collections.reverseOrder()); //primitive arrays은 Arrays.sort()를 통한 내림차순을 할 수 없다. Object of Array를 사용하면 Collections.reverseOrder()사용 가능
+                 StringBuilder sb = new StringBuilder();
+                 for (String str : s) sb.append(str);
+
+                 return Long.parseLong(sb.toString());
+             }
+         }
+
+오름차순 정렬
+
+= Arrays.sort()
+
+내림차순 정렬
+
+= Arrays.sort(arr, Collection.reverseOrder());
+
+# 정수 제곱근 판별
+
+         class Solution {
+             public long solution(long n) {
+                 long answer = 0;
+                 long sqrt = (long) Math.sqrt(n); // 형변환을 통해 long으로 변화시켜 넣음
+
+                 if (Math.pow(sqrt,2)==n) return (long) Math.pow(sqrt+1,2); // solution이 long값이라 long으로 형변환
+                 return -1;
+             }
+         }
+
+* Math.sqrt(n^2)=5, Math.pow(n,2)=n^2
+
+# 제일 작은 수 제거하기
+         import java.util.ArrayList;
+         import java.util.Arrays;
+
+         class Solution {
+             public int[] solution(int[] arr) {
+
+                 if (arr.length <= 1) {
+                     int[] answer = {-1};
+                     return answer;
+                 }
+                 int[] answer = new int[arr.length - 1]; // arr.length -1 가장 작은 수 제거한 배열 수
+                 int min = arr[0];
+                 for (int i = 1; i < arr.length; i++) {
+                     min = Math.min(min, arr[i]); // arr[0]인 min과 비교하여 가장 작은 수 출력
+                 }
+                 int index = 0;
+                 for (int i = 0; i < arr.length; i++) {
+                     if (arr[i] == min) {
+                         continue;
+                     }
+                     answer[index++] = arr[i]; // 가장 작은 수를 찾을 때까지 배열의 길이 증가
                  }
                  return answer;
              }
