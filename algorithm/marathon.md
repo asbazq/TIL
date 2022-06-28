@@ -856,3 +856,26 @@ sb.reverse() - 글자 순서를 뒤집는다
                  return answer;
              }
          }
+         
+       
+# 하샤드 수
+
+         class Solution {
+             public boolean solution(int x) {
+                 boolean answer = true;
+                 int sum = 0;
+                 int num = x; // if문에서 사용하기 위해 x값을 저장
+
+                 while (x > 0) {
+                     sum += x % 10;
+                     x /= 10;
+                 }
+
+                 if (num % sum == 0) {
+                     answer = true;
+                 } else {
+                     answer = false;
+                 }
+                 return answer;
+             }
+         }
