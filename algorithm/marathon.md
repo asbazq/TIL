@@ -1088,3 +1088,29 @@ import java.util.Arrays;
 * Array
 
 value안에 index
+
+# 두 개 뽑아서 더하기
+
+         import java.util.ArrayList;
+         import java.util.Collections;
+
+             class Solution {
+                 public int[] solution(int[] numbers) {
+
+
+                     ArrayList<Integer> ary = new ArrayList<>();
+                     for (int i = 0; i < numbers.length ; i++) {
+                         for (int j = i + 1; j < numbers.length; j++) { // 두 수가 겹치지 않도록 j = i + 1
+                             int sum = numbers[i] + numbers[j];
+                             if (!ary.contains(sum)) ary.add(sum); // 같은 수가 있다면 넣지 않는다
+                         }
+                     }
+                     Collections.sort(ary);
+                     int[] answer = new int[ary.size()]; // ary를 뒤에 선언했기에 answer을 밑에서 선언해 준다.
+                     for (int i = 0; i < ary.size(); i++) {
+                         answer[i] = ary.get(i);
+                     }
+                     return answer;
+                 }
+             }
+
