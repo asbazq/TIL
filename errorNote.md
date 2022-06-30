@@ -1,6 +1,9 @@
+java: class Main is public, should be declared in a file named Main.java
+public class는 고유명사,
+
 Exception in thread "main" java.lang.NullPointerException 
 
-	at aa.bb.cc.NullPointerException.main(NullPointerException.java:7) 와 같은 에러가 뜬다. 왜냐면, java.lang 패키지 안에 있는 클래스인 Integer의 참조변수인 myInteger가 null값을 가지니 intValue()를 불러오는데 에러가 생긴 거다. 
+	at aa.bb.cc.NullPointerException.main(NullPointerException.java:7) 와 같은 에러가 뜬다. 왜냐면, java.lang 패키지 안에 있는 클래스인 Integer의 참조변수인 myInteger가 null값을 가지니 intValue()를 불러오는데 에러가 생긴 거다. 혹은 변수 크기 미설정
 
 
 
@@ -43,3 +46,8 @@ Exception in thread "main" java.lang.NoSuchMethodError: main
 Multiple markers at this line
 
  문장에 문법적 오류가 있을때 일어나는 에러다. 괄호, 수식, if문 for문 같은 문법적 오류와 private이나 static와 같은 키워드 차원에서도 일어난다.
+ 
+ java: cannot find symbol
+실행구문의 생성자가 pubic class의 이름과 다르다.
+ 
+ 
