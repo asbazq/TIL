@@ -1027,3 +1027,61 @@ if (maxW < sizes[i][0]) maxW = sizes[i][0];
 
 # 3번. 같은 단어는 싫어
 
+         public class Main {
+             public String[] solution(String[] arr, int n) {
+                 String[] answer = new String[arr.length];
+
+                 ArrayList<String> ary = new ArrayList<>();
+                 String sameStr = "";
+                 for (int i = 0; i < arr.length; i++) {
+                     if ( sameStr == arr[i]) {
+                         sameStr = arr[i];
+                         ary.add(arr[i].charAt(n) + arr[i]);
+                     }
+                     Collections.sort(ary);
+                 }
+                 for (int i = 0; i < arr.length; i++) {
+                     answer[i] = ary.get(i).substring(1);
+                 }
+
+                     return answer;
+                 }
+
+                 public static void main(String[] args) {
+                     Main method = new Main();
+                     String[] arr = {"coke", "water", "glass", "dog", "dog", "yogurt", "vitamin"};
+                     int n = 2;
+                     System.out.println(Arrays.toString(method.solution(arr, n)));
+                 }
+             }
+
+# 1번. 행렬 음양 더하기
+
+import java.util.Arrays;
+
+public class Main {
+    public int[][] solution(int[][] arr1, int[][] arr2, boolean[][] signs) {
+        int[][] answer = new int[arr1.length][arr1[0].length]; // arr1.length = 배열의 개수, arr1[0].length = index의 
+
+
+        for (int i = 0; i < arr1.length; i++) {
+            for (int j = 0; j < arr1[0].length; j++) {
+                if (signs[i][j]) {
+                    answer[i][j] = arr1[i][j] + arr2[i][j];
+                } else {
+                    answer[i][j] = -arr1[i][j] - arr2[i][j];
+                }
+            }
+        }
+        return answer;
+    }
+
+    public static void main(String[] args) {
+        Main method = new Main();
+        int[][] arr1 = {{5, 7, 1}, {2, 3, 5}};
+        int[][] arr2 = {{5, 1, 6}, {7, 5, 6}};
+        boolean[][] signs = {{true, true, false}, {false, true, false}};
+        System.out.println(Arrays.deepToString(method.solution(arr1, arr2, signs)));
+    }
+}
+
