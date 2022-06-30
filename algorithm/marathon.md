@@ -879,3 +879,151 @@ sb.reverse() - 글자 순서를 뒤집는다
                  return answer;
              }
          }
+         
+# 3진법 뒤집기
+
+         import java.util.*;
+         class Solution {
+             public int solution(int n) {
+                 int answer = 0;
+                 ArrayList<Integer> list = new ArrayList<>();
+                 // 10진법 -> 3진법
+                 while(n != 0) {
+                     list.add(n%3);
+                     n /= 3;
+                 } 
+                 // 3진법 -> 10진법
+                 int tmp = 1;
+                 for(int i=list.size()-1;i>=0;i--) { 
+                     answer += list.get(i)*tmp;
+                     tmp *= 3;
+                 }
+                 return answer;
+             }
+         } 
+         
+* 다른 풀이
+
+         import java.util.*;
+         class Solution {
+             public int solution(int n) {
+                 int answer = 0;
+                 String ans = "";
+                 while(n != 0) {
+                     ans += n%3; // String을 사용하여 숫자 배열 ex) String "1234", Array {"1","2","3","4"}
+                     n /= 3;
+                 }
+                 return Integer.parseInt(ans, 3); // int 10진법으로 변환
+             }
+         }
+         
+> 진법 변환
+        
+         N진법 -> 10진법
+         Integer.parseInt(i, N);
+         10진법 -> N진법
+         Integer.toBinaryString(number); // 2진법
+         Integer.toOctalString(number); // 8진법
+         Integer.toHexString(number); // 16진법
+
+# 최소직사각형
+
+         class Solution {
+             public int solution(int[][] sizes) {
+                 int answer = 0;
+                 int maxW = 0;
+                 int maxH = 0;
+                     for (int i = 0; i < sizes.length; i++) {
+                        if (sizes[i][0] < sizes[i][1]) {
+                            int tmp = sizes[i][0];
+                            sizes[i][0] = sizes[i][1];
+                            sizes[i][1] = tmp;
+                        }
+                        if (maxW < sizes[i][0]) maxW = sizes[i][0];
+                        if (maxH < sizes[i][1]) maxH = sizes[i][1]; // 정규표현식 maxw = Math.max(maxw, sizes[i][0] > sizes[i][1] ? sizes[i][0] : sizes[i][1]);
+                                                                                  maxh = Math.max(maxh, sizes[i][0] > sizes[i][1] ? sizes[i][1] : sizes[i][0]);
+
+                     }
+                     answer = maxH * maxW;
+                 return answer;
+             }
+         }
+         
+* point
+
+두 값을 swsp 
+int tmp = array[i][0];
+array[i][0] = array[i][1]; // tmp 임시로 이동할 파일이 지워지지 않게 보관
+array[i][1] = tmp;
+
+최대값 구하는 법
+
+if (maxW < sizes[i][0]) maxW = sizes[i][0];
+
+# 2번. 자연수 뒤집어 더하기
+
+          public String solution(int n) {
+                 String answer = "";
+                 String s = String.valueOf(n); // int n을 String으로 변환
+                 int[] rn = new int[s.length()]; // 배열 rn의 크기 부여
+                 int sum = 0;
+                 int cnt = 0;
+
+                 while (n != 0) { // 자리수 역순으로 구하기
+                     rn[cnt] = n % 10;
+                     n /= 10;
+                     cnt++; // cnt를 사용하여 rn에 순차적으로 스태킹
+                 }
+
+                 for (int i = 0; i < rn.length; i++) {
+                     sum += rn[i];
+                 }
+
+                 StringBuilder sb = new StringBuilder(); // StringBuilder는 일시적 저장소?
+                 for (int i = 0; i < rn.length; i++) {
+                     sb.append(rn[i]);
+                     if (i != rn.length - 1) {
+                         sb.append("+"); // sb에 일시적으로 저장
+                     } else {
+                         sb.append("="); 
+                         sb.append(sum);
+                     }
+                 }
+
+
+                 answer = sb.toString(); // toString()을 사용하여 저장해논 값을 출력
+
+                 return answer;
+             }
+         // 출력 값
+             public static void main(String[] args) {
+                 Main method = new Main();
+
+                 System.out.println(method.solution(718253));
+             }
+         }
+         
+#  문자열 내 마음대로 정렬하기
+
+         import java.util.ArrayList;
+         import java.util.Collections;
+
+         class Solution {
+             public String[] solution(String[] strings, int n) {
+                 String[] answer = new String[strings.length];
+
+                 ArrayList<String> ary = new ArrayList<>();
+                 for (int i = 0; i < strings.length; i++) {
+                     ary.add(strings[i].charAt(n) + strings[i]); // charAt(n)을 이용해서 인덱스 n번째 문자로 정렬  
+                 }
+                 Collections.sort(ary); // Collections.sort(ary) ArrayList 정렬, Arrays.sort(ary) Array(배열) 정렬
+
+                 for (int i = 0; i < strings.length; i++) {
+                     answer[i] = ary.get(i).substring(1); // 배열 answer에 넣어주기 위해 목록액세스로 변환(get사용)
+                 }
+                 return answer;
+             }
+         }
+
+# 3번. 같은 단어는 싫어
+
