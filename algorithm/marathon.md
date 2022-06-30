@@ -1085,3 +1085,6 @@ public class Main {
     }
 }
 
+* Array
+
+value안에 index
