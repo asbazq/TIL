@@ -106,15 +106,3 @@ JWT 단점
       https://tansfil.tistory.com/58?category=255594
       
 
-## REST란, (=REpresentational State Transfer)
-
-자원을 URI를 통해 명시하고, Method를 통해 해당 자원에 대한 행위를 정의하는 것을 의미합니다.
-쉽게 말해서 Resource를 HTTP Method를 통해 처리하도록 설계된 아키텍처를 말합니다.
-
-### REST API란, 
-
-api이므로 HTML, CSS 등을 주고받을 때는 Rest 를 붙이지 않음
-
-REST 기반으로 서비스 API를 구현한 것을 말합니다.
-API란 라이브러리 제공을 통해 프로그램간에 특정 기능을 호출할 수 있는 명세를 의미합니다.
-REST API를 사용하는 이유는 REST는 HTTP 표준을 기반으로 구현하므로,  HTTP를 지원하는 프로그램 언어로 클라이언트, 서버를 구현할 수 있습니다.
