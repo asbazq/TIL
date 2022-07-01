@@ -50,4 +50,6 @@ Multiple markers at this line
  java: cannot find symbol
 실행구문의 생성자가 pubic class의 이름과 다르다.
  
+ missing return statement
  
+ 모든 경우에 대한 return 값을 가지도록 한다.
