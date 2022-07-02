@@ -1166,4 +1166,40 @@ value안에 index
                  }
              }
          }
+         
+# 문자열 내림차순으로 배치하기
 
+         import java.util.ArrayList;
+         import java.util.Collections;
+
+         class Solution {
+             public String solution(String s) {
+                 String answer = "";
+                 String[] str = new String[s.length()];
+
+                 ArrayList<String> ary = new ArrayList<>();
+
+                 str = s.split("");
+                 for (int i =0; i < s.length(); i++) {
+                     ary.add(str[i]);
+                 }
+                 ary.sort(Collections.reverseOrder());
+
+                 for (int i =0; i < s.length(); i++) {
+                     answer += ary.get(i);
+                 }
+                 return answer;
+             }
+         }
+
+             // 출력문
+             public static void main(String[] args) {
+                 StringSort method = new StringSort();
+                 String s = "Zbcdefg";
+                 System.out.println(method.solution(s));
+             }
+         }
+
+
+         
+*Character.isUpperCAse(`char배열`) = true // 대문자인지 판단
