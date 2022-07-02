@@ -1177,10 +1177,10 @@ value안에 index
                  String answer = "";
                  String[] str = new String[s.length()];
 
-                 ArrayList<String> ary = new ArrayList<>();
+                 ArrayList<String> ary = new ArrayList<>(); // 배열 길이가 변화되지 않기 때문에 ArrayList 불필요
 
                  str = s.split("");
-                 for (int i =0; i < s.length(); i++) {
+                 for (int i =0; i < s.length(); i++) { // 따라서 추가하는 내용도 불필요
                      ary.add(str[i]);
                  }
                  ary.sort(Collections.reverseOrder());
@@ -1203,3 +1203,34 @@ value안에 index
 
          
 *Character.isUpperCAse(`char배열`) = true // 대문자인지 판단
+
+* 다른 풀이1
+
+         import java.util.*;
+
+
+         class Solution {
+             public String solution(String s) {
+                 String answer="";
+
+                 String arr[] = s.split("");
+
+                 Arrays.sort(arr ,Collections.reverseOrder());
+
+                 for(int i=0;i<arr.length;i++){
+
+                     answer += arr[i];
+                 }
+
+                 return answer;
+             }
+         }
+
+* 다른 풀이2
+
+         public String solution(String s) { 
+         char[] array = s.toCharArray();
+         Arrays.sort(array);
+         return new StringBuilder(new String(array)).reverse().toString(); // 선 정렬 후 StringBuilder를 사용하여 뒤집고 String으로 변환하여 출력
+         }
+
