@@ -18,4 +18,4 @@
 
 ## Algorithm
 
-* [마라톤]
+* [마라톤](https://github.com/asbazq/TIL/blob/a93cfde38688e78fe29c03bc56021aafdced2190/algorithm/marathon.md)
