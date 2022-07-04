@@ -11,7 +11,7 @@
 
 ## 분류
 
-### Python
+### Java
 
 * [API](https://github.com/asbazq/TIL/blob/main/python/API.md)
 * [JWT](https://github.com/asbazq/TIL/blob/main/python/JWT.md)
