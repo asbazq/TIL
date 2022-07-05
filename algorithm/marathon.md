@@ -1272,3 +1272,44 @@ class Mock {
         System.out.println(Arrays.toString(method.solution(a)));
     }
 }
+
+# 소수 만들기
+
+         import java.util.ArrayList;
+
+         public class Solution {
+
+             public int solution(int[] nums) {
+                 int answer = 0;
+                 int sum = 0;
+
+                 // 합을 저장할 저장공간 선언
+                 ArrayList<Integer> ary = new ArrayList<Integer>();
+                 // for문을 이용하여 배열의 합을 구한다.
+                 for (int i = 0; i < nums.length; i++) {
+                     for (int j = i + 1; j < nums.length; j++) {
+                         for (int l = j + 1; l < nums.length; l++) {
+                             sum = (nums[i] + nums[j] + nums[l]);
+                             if (!ary.contains(sum)) ary.add(sum); // 중복확인
+                         }
+                     }
+                 }
+
+                 // 저장된 합이 소수인지 판별한다.
+                 for (int j = 0; j < ary.size(); j++) {
+                     int i = ary.get(j);
+                     int count = 2; 
+                     answer++;
+                     while (count < i) {
+                         // 저장된 값이 count로 나눴을 때 나머지가 0이라면 소수가 아니기 때문에 answer의 값을 더하지 않는다.
+                         if (i % count == 0) {
+                             answer--;
+                             break;
+                         }
+                         count++;
+                     }
+                 }
+                 return answer;
+             }
+           }
+
