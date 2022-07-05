@@ -19,11 +19,10 @@ app.config["TEMPLATES_AUTO_RELOAD"] = True
 app.config['UPLOAD_FOLDER'] = "./static/image/profile_pics"
 
 key_list = {
-    'MongoKey': secret.mongo_db_key,
-    'SECRET_KEY': secret.JWT_KEY
+
 }
 
-SECRET_KEY = key_list['SECRET_KEY']
+SECRET_KEY = key_list['']
 client = MongoClient(key_list['MongoKey'])
 db = client.dbsparta
 userCollection = db.users
