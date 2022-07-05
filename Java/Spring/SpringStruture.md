@@ -37,13 +37,14 @@ ex)
     public ReadRequestDto(Memo from) {
             this.username = from.getUsername();
             this.title = from.getTitle();
-        }
+             }
 
 위와 같이 생성자를 생성해야되는데 Setter, Getter를 사용하면
 
-  public class ReadRequestDto {
-      private String username; 
-      private String title;
+      public class ReadRequestDto {
+          private String username; 
+          private String title;
+          }
 
 이처럼 간편한게 사용할 수 있다.
 
