@@ -1313,3 +1313,103 @@ class Mock {
              }
            }
 
+# 숫자 문자열과 영단어
+
+* 문자열이 숫자인지 확인하는 방법
+
+  - regex(정규표현식)를 인수로 사용하고true 또는false 부울 값을 반환하는String 클래스의matched()메서드를 사용할 수 있습니다.
+
+         public class SimpleTesting {
+
+             public static void main(String[] args) {
+                 String str = "123";
+                 boolean isNumeric =  str.matches("[+-]?\\d*(\\.\\d+)?");
+                 System.out.println(isNumeric);
+                 str = "121xy";
+                 isNumeric =  str.matches("[+-]?\\d*(\\.\\d+)?");
+                 System.out.println(isNumeric);
+                 str = "0x234";
+                 isNumeric =  str.matches("[+-]?\\d*(\\.\\d+)?");
+                 System.out.println(isNumeric);
+             }
+         }
+     
+  - Character클래스의 isDigit()메서드를 사용하여 루프의 각 문자를 확인할 수 있습니다. true또는 false값을 반환합니다.
+
+         public class SimpleTesting {
+
+             public static void main(String[] args) {
+                 String str = "1123";
+                 boolean isNumeric = true;
+                 for (int i = 0; i < str.length(); i++) {
+                     if (!Character.isDigit(str.charAt(i))) {
+                         isNumeric = false;
+                     }
+                 }
+                 System.out.println(isNumeric);
+             }
+         }
+         
+  - Apache를 사용하는 경우StringUtils 클래스의isNumeric()메서드를 사용할 수 있습니다.이 메서드는 숫자 시퀀스가 포함 된 경우true를 반환합니다.
+
+
+         import org.apache.commons.lang3.StringUtils;
+
+         public class SimpleTesting {
+
+             public static void main(String[] args) {
+                 String str = "1123";
+                 boolean isNumeric = StringUtils.isNumeric(str);
+                 System.out.println(isNumeric);
+                 str = "123xyz";
+                 isNumeric = StringUtils.isNumeric(str);
+                 System.out.println(isNumeric);
+             }
+         }
+
+  - Double 클래스의parseDouble()메서드를 사용하여 문자열을 double로 변환하고 double 유형 값을 반환 할 수 있습니다. 구문 분석 할 수없는 경우 예외가 발생합니다.
+
+             public class SimpleTesting {
+
+             public static void main(String[] args) {
+                 String str = "1123";
+                 try {
+                 Double.parseDouble(str);
+                 System.out.println("It is numerical string");
+                 }catch(NumberFormatException e) {
+                     System.out.println("It is not numerical string");
+                 }
+             }
+         }
+         
+   - Java 8 이상 버전
+
+         public class SimpleTesting {
+
+             public static void main(String[] args) {
+                 String str = "1123";
+                 boolean isNumeric = str.chars().allMatch( Character::isDigit );
+                 System.out.println(isNumeric);
+                 str = "ab234";
+                 isNumeric = str.chars().allMatch( Character::isDigit );
+                 System.out.println(isNumeric);
+             }
+         }
+         
+  
+  * 문제풀이
+         public class ChangeNum {
+             public int solution(String s) {
+                 int answer = 0;
+                 String[] num = {"zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine"};
+
+                 for (int i = 0; i < 10; i++) {
+                     s = s.replace(num[i],Integer.toString(i)); // 따로 확인할 필요없이 replace를 통해 숫자를 체크하고 변경
+                 }
+                 answer = Integer.parseInt(s);
+
+                 return answer;
+             }
+         }
+
+* 여러모로 다양하게 사용되는 replace 
