@@ -39,4 +39,6 @@ RESTful API는 두 컴퓨터 시스템이 인터넷을 통해 정보를 안전�
 
 [참고 유튜브](https://www.youtube.com/watch?v=iOueE9AXDQQ&ab_channel=%EC%96%84%ED%8C%8D%ED%95%9C%EC%BD%94%EB%94%A9%EC%82%AC%EC%A0%84)
 
+[aws제공 rest](서버가 하는 연결관리를 클라이언트에게 맞기고 서버는 작업 처리만 => 자원을 아낌, 많은 서비스 제공)
+
 [자세한 사항](https://www.ics.uci.edu/~fielding/pubs/dissertation/rest_arch_style.htm)
