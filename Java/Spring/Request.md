@@ -1,4 +1,45 @@
-#  Spring에서 Client로 받은 요청을 객체로 바인딩하기 위해 사용하는 방법
+# Request 객체는 API를 컨트롤하기 위한 메소드
+- param
+- query
+- body
+
+
+## req.param
+
+주소에 포함된 변수를 담는다. 예를 들어 https://naver.com/post/12345 라는 주소가 있다면 12345를 담는다.
+서버에서 Path Variable 로 칭한다.
+
+## req.query
+
+주소 바깥, ? 이후의 변수를 담는다. 예를 들어 https://naver.com/post?post_id=12345 일 경우 Node.js를 담는다.
+&로 연결하여 여러 개의 데이터를 넘길 수 있다. https://naver.com/post?post_id=1235&key=value
+서버에서 Query parameter 로 칭한다.
+
+## req.body
+
+XML, JSON, Multi Form 등의 데이터를 담는다. 당연히 주소에서 확인할 수 없다.
+하지만 크롬 개발자 도구, Fiddler와 같은 툴로 요청 내용을 확인할 수 있다. 민감한 데이터의 경우 반드시 암호화해 전송해야 한다.
+ 
+
+### param vs query
+resource를 식별해야하는 상황에서는Path Variable가 더 적합하다.
+정렬이나 필터링을 해야하는 상황에서는 Query Parameter가 더 적합하다.
+ 
+
+### query string(query/parameter) vs body
+- body을 사용할 때 
+  - 인수에 플랫 키-값 구조가 없는 경우
+  직렬화 된 이진 데이터와 같이 값이 사람이 읽을 수없는 경우
+  매우 많은 수의 인수가있을 때(일부 웹 서버에는 URI 길이에 제한이 있다.) body에는 제한이 없음
+
+- query string을 사용할 때
+  - 인수가 디버깅하는 동안보고 싶을 때
+  - 코드를 개발하는 동안 수동으로 호출 할 수 있기를 원할 때
+    ex) curl
+  - 여러 웹 서비스에서 인수가 공통적인 경우
+  - 다음과 같은 다른 콘텐츠 유형을 이미 보내고있는 경우 application/octet-stream
+
+혼합하여 일치시킬 수 있습니다. 공통된 항목, 디버그 가능해야하는 항목을 쿼리 문자열에 넣고 나머지는 json에 모두 넣습니다.
 
 
 ## @RequestBody
