@@ -1413,3 +1413,24 @@ class Mock {
          }
 
 * 여러모로 다양하게 사용되는 replace 
+
+# 시저 암호
+
+             class Solution {
+                 public String solution(String s, int n) {
+                     String answer = "";
+
+                     for (int i =0; i < s.length(); i++) {
+                         char chr = s.charAt(i);
+
+                         if (Character.isLowerCase(chr)) {
+                             chr = (char) ((chr - 'a' + n) % 26 + 'a'); // 아스키 코드로 계산하여 chr에 첫문자 a를 빼주어 n을 더해 구함
+                         } else if (Character.isUpperCase(chr)) {
+                             chr = (char) ((chr - 'A' + n) % 26 + 'A'); // % 26을 통해 z이후는 다시 a부터 
+                         }
+                         answer += chr;
+                     }
+                     return answer;
+                 }
+             }
+
