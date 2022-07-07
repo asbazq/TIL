@@ -1433,4 +1433,6 @@ class Mock {
                      return answer;
                  }
              }
+             
+* char는 숫자(아스키 코드)로 저장
 
