@@ -54,10 +54,10 @@
     
           💡 [Sample]
 
-          **GET /hello/html/dynamic** → `HomeController` 의 **helloHtmlFile() 함수**
-          **GET /user/login** → `UserController` 의 **login() 함수**
-          **GET /user/signup** → `UserController` 의 **signup() 함수**
-          **POST /user/signup** → `UserController` 의 **registerUser() 함수**
+          GET /hello/html/dynamic → `HomeController` 의 helloHtmlFile() 함수
+          GET /user/login → `UserController` 의 login() 함수
+          GET /user/signup → `UserController` 의 signup() 함수
+          POST /user/signup → `UserController` 의 registerUser() 함수
 
     
     - 함수 이름을 내 마음대로 설정 가능했던 이유!! -> Handler mapping이 Spring을 기동할 때 매칭을 한 뒤 그 다음에 동작하기 때문
