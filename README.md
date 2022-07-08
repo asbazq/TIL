@@ -14,7 +14,7 @@
 ### Java
 
 * [API](https://github.com/asbazq/TIL/blob/main/python/API.md)
-* [JWT](https://github.com/asbazq/TIL/blob/main/python/JWT.md)
+* [Json](https://github.com/asbazq/TIL/blob/master/Java/Json.md)
 
 #### Spring
 
