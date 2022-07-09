@@ -61,7 +61,7 @@ Jackson 라이브러리 내부적으로는 Getter나 Setter, @JsonInclude 등을
 @RequestParam은 필수 여부가 true이기 때문에 기본적으로 반드시 해당 파라미터가 전송되어야 한다. 해당 파라미터가 전송되지 않으면 400 Error를 유발하게 된다. 
 그렇기 때문에 반드시 필요한 변수가 아니라면 required의 값을 false로 설정해둘 수 있으며 해당 Parameter를 사용하지 않고 요청을 보낼 경우에 default로 받을 값을 defaultValue 옵션을 통해 설정할 수도 있다.
  
-## [JPA에서 Query사용](https://sundries-in-myidea.tistory.com/91)
+**[JPA에서 Query사용](https://sundries-in-myidea.tistory.com/91)
 
 
 ## [ RequestBody, ModelAttribute, RequestParam 간단 정리 ]
