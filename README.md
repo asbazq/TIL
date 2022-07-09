@@ -28,6 +28,7 @@
 * [Controller](https://github.com/asbazq/TIL/blob/master/Java/Spring/Controller.md)
 * [Request](https://github.com/asbazq/TIL/blob/master/Java/Spring/Request.md)
 * [Rest](https://github.com/asbazq/TIL/blob/master/Java/Spring/Rest.md)
+* [JPA](https://github.com/asbazq/TIL/blob/master/Java/Spring/JPA.md)
 
 ### Algorithm
 
