@@ -156,6 +156,10 @@
 
 - Client 와 Server 간 Request, Response 는 **HTTP 메시지 규약**을 따름
 
+![HTTP](https://velog.velcdn.com/images%2Fdmsgp8292%2Fpost%2F0f0e2d2d-573d-4e2b-bd49-f4300c99a65d%2F11.jpg)
+
+**Controller 와 HTTP Response 메시지**
+
 
 ![비교](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F154b3cb0-7202-4958-9a6e-7c30f6422d67%2FUntitled.png?table=block&id=ad1a5156-70d2-458d-832c-625101ec21fa&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=1650&userId=&cache=v2)
 
@@ -164,9 +168,9 @@
 
 1. static 폴더
     
-        🌐http://localhost:8080/hello.html
+      🌐http://localhost:8080/hello.html
     
-      resources/static/hello.html
+        resources/static/hello.html
   > static 폴더 내의 hello.html을 출력
   
 2. Redirect
@@ -178,7 +182,7 @@
     
     ```java
     @Controller
-    @RequestMapping("**/hello/response**")
+    @RequestMapping("/hello/response")
     public class HelloResponseController {
     		@GetMapping("/html/redirect")
         public String htmlFile() {
@@ -192,7 +196,7 @@
 3. Template engine 에 View 전달
     
     <aside>
-    🌐 http://localhost:8080**/hello/response/html/templates**
+    🌐 http://localhost:808/hello/response/html/templates
     
     </aside>
     
@@ -243,7 +247,7 @@
 - (2) 동적 웹페이지
     
     <aside>
-    🌐 http://localhost:8080**/hello/response/html/dynamic**
+    🌐 http://localhost:8080/hello/response/html/dynamic
     
     </aside>
     
@@ -261,21 +265,21 @@
     - View,  Model 정보 → 타임리프에게 전달
     - 타임리프 처리방식
         - View 정보
-            - "hello-visit" → resources**/templates/**hello-visit**.html**
+            - "hello-visit" → resources/templates/hello-visit.html
             
             ```html
             <div>
-              (방문자 수: <span th:text="${**visits**}"></span>)
+              (방문자 수: <span th:text="${visits}"></span>)
             </div>
             ```
             
         - Model 정보
-            - **visits**: 방문 횟수 (visitCount)
-            - 예) 방문 횟수: **1,000,000** 번
+            - visits: 방문 횟수 (visitCount)
+            - 예) 방문 횟수: 1,000,000 번
             
             ```html
             <div>
-              (방문자 수: <span>**1000000**</span>)
+              (방문자 수: <span>1000000</span>)
             </div>
             ```
             
@@ -283,7 +287,7 @@
     1. 반환값: String 
         
         <aside>
-        🌐 http://localhost:8080**/hello/response/json/string**
+        🌐 http://localhost:8080/hello/response/json/string
         
         </aside>
         
@@ -298,7 +302,7 @@
     2. 반환값: String 외 자바 클래스
         
         <aside>
-        🌐 http://localhost:8080**/hello/response/json/class**
+        🌐 http://localhost:8080/hello/response/json/class
         
         </aside>
         
@@ -314,3 +318,7 @@
   
   </p>
 </details>
+
+**Controller 와 HTTP Request 메시지**
+
+![Request message](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fd7a96915-928a-4a15-b616-12f05039de5b%2FUntitled.png?table=block&id=c63bb953-3221-4739-8c68-622fe4f97338&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=1380&userId=&cache=v2)
