@@ -1,13 +1,9 @@
 # Spring MVC
 
 - Spring 프레임워크에서 제공하는 웹 모듈이다.
-- MVC 는 Model-View-Controller 의 약자로, 기본 시스템 모듈을 MVC 로 나누어 구현되어있다.
-  - Model 은 '데이터' 디자인을 담당한다.
-    - ex. 상품 목록, 주문 내역 등
-  - View 는 '실제로 렌더링되어 보이는 페이지' 를 담당한다.
-    - ex. .JSP 파일들이 여기에 해당된다.
-  - Controller 는 사용자의 요청을 받고, 응답을 주는 로직을 담당한다.
-    - ex. GET 등의 uri 매핑이 여기에 해당된다.
+- 소프트웨어공학에서 사용되는 아키텍쳐 패턴으로 MVC 패턴의 주 목적은 Business logic과 Presentation logic을 분리하기 위함이다.
+- MVC패턴을 사용하면, 사용자 인터페이스로부터 비지니스 로직을 분리하여 애플리케이션의 시각적 요소나 그 이면에서 실행되는 비지니스 로직을 서로 영향 없이 쉽게 고칠 수 있는 애플리케이션을 만들 수 있다.
+- MVC 는 **Model-View-Controller** 의 약자로, 기본 시스템 모듈을 MVC 로 나누어 구현되어있다.
 - Spring MVC 모듈을 사용하여, 백엔드 프로그래밍의 기본 프레임워크를 잡는다.
   - Web 서버에 특화되어 만들어진 모듈이라, 개발자가 해야할 영역을 더 적게 만들어준다.
   - 즉 기존에 Spring 보다 더 깔끔하고 간편하게 개발 가능.
@@ -38,9 +34,28 @@
  
 - Servlet 과 JSP를 사용하여 작성할 수 있음
 
-출처: https://emongfactory.tistory.com/121 [Emong's Factory:티스토리], https://dailyheumsi.tistory.com/159
+출처: https://emongfactory.tistory.com/121 [Emong's Factory:티스토리], https://dailyheumsi.tistory.com/159, https://catsbi.oopy.io/f52511f3-1455-4a01-b8b7-f10875895d5b
 
-![동작](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FdJDooL%2FbtqBpP4NxVG%2Fi9C3OlKdgILgixFKny52EK%2Fimg.png)
+![동작](https://oopy.lazyrockets.com/api/v2/notion/image?src=https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F183bb42c-2998-4362-ade1-b7d75f75a851%2FUntitled.png&blockId=209ecc2e-d659-4a44-a519-675c16309d89)
+
+
+<details><summary>동작 순서</summary>
+<p>
+  
+1. 핸들러 조회 : 핸들러 매핑을 통해 URL에 매핑된 핸들러(컨트롤러) 조회
+2. 핸들러 어댑터 조회: 핸들러를 실행할 수 있는 핸들러 어댑터 조회
+3. 핸들러 어댑터 실행: 핸들러 어댑터 실행
+4. 핸들러 실행: 핸들러 어댑터가 실제 핸들러를 실행
+5. ModelAndView 반환: 핸들러 어댑터는 핸들러가 반환하는 정보를 ModelAndView로 변환해 반환.
+6. viewResolver 호출: 뷰 리졸버를 찾아 실행한다. 
+⇒ JSP: InternalResourceViewResolver가 자등 등록되어 사용된다.
+7. View 반환: 뷰 리졸버는 뷰의 논리 이름을 물이 이름으로 바꾸고 렌더링 역할을 담당하는 뷰 객체 반환.
+⇒ JSP: InternalResourceView(JstlView)를 반환하는데, 내부에는 forward() 가 있다. 
+8. 뷰 렌더링: 뷰를 통해서 뷰를 렌더링한다.
+  
+</p>
+</details>  
+
 ![동작2](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F2d7b8346-03a9-4fe8-b8e4-ce9ca79df02d%2FUntitled.png?table=block&id=94f0bb39-4a3c-4c11-94a6-4f2bcb2bc680&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2)
 
 <details><summary>동작 원리</summary>
@@ -102,6 +117,16 @@
   - 각 서비스에서는 DB 접근할 수 있는 Repository 객체를 이용하여 데이터에 접근할 수 있다.
 - 컨트롤러는 서비스에서의 로직 처리 후, 결과를 뷰 리졸버를 거쳐 뷰 파일을 렌더링하여 내보낸다.
   - ViewResolver 객체가 이 역할을 한다.
+
+|구성요소|설명|
+|---|---|
+|DispatcherServelt|클라이언트의 요청을 받아서 Controller에게 클라이언트의 요청을 전달하고, 리턴한 결과값을 View에게 전달하여 알맞은 응답을 생성|
+|Handler Mapping|URL과 요청 정보를 기준으로 어떤 핸들러 객체를 사용할지 결정하는 객체이며, DispacherServlet은 하나 이상의 핸들러 매핑을 가질 수 있음|
+|Controller|클라이언트의 요청을 처리한 뒤, Model를 호출하고 그 결과를 DispatcherServlet에게 알려줌|
+|Model And View|Controller가 처리한 데이터 및 화면에 대한 정보를 보유한 객체|
+|View|Controller의 처리 결과 화면에 대한 정보를 보유한 객체|
+|ViewResolver|Controller가 리턴한 뷰 이름을 기반으로 Controller 처리 결과를 생성할 뷰를 결정|
+
 
 ## Server 에서 HTML 을 내려 주는 경우
 
