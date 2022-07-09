@@ -16,6 +16,10 @@
 * [API](https://github.com/asbazq/TIL/blob/main/python/API.md)
 * [Json](https://github.com/asbazq/TIL/blob/master/Java/Json.md)
 * [Access Modifier](https://github.com/asbazq/TIL/blob/master/Java/Access%20Modifier.md)
+* [Array](https://github.com/asbazq/TIL/blob/master/Java/Array.md)
+* [List](https://github.com/asbazq/TIL/blob/master/Java/List.md)
+* [Set](https://github.com/asbazq/TIL/blob/master/Java/Set.md)
+* [Generic](https://github.com/asbazq/TIL/blob/master/Java/Generic.md)
 
 #### Spring
 
