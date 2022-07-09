@@ -68,14 +68,14 @@
         public class ItemSearchController {
         		@GetMapping("/api/search")
             @ResponseBody
-            public List<ItemDto> getItems(**@RequestParam String query**) { // DispatcherServlet이 @RequestParam이라는 정보가 
+            public List<ItemDto> getItems(@RequestParam String query) { // DispatcherServlet이 @RequestParam이라는 정보가 
         			// ...                                     // 클라이언트에서 왔을 때 Controller로 전달
         		}
         }
         ```
         
 
-1. **Controller** → DispathcerServlet
+1. Controller → DispathcerServlet
     1. Controller 가 Client 으로 받은 API 요청을 처리
     2. 'Model' 정보와 'View' 정보를 DispatcherServlet  으로 전달(HTML을 내려주는 경우)
   > @ResponseBody를 사용할 때는 전달되지 않음
