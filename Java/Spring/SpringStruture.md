@@ -10,7 +10,7 @@ Request -> DispatcherServlet -> HandlerMapping -> Controller -> Service -> DAO -
 
 ## Entity(엔티티)
 
-데이터베이스(Database, DB) 에 쓰일 필드와 여러 엔티티간 연관관계를 정의한다.
+데이터베이스(Database, DB) 에 쓰일 필드와 여러 엔티티간 연관관계를 정의한다. 즉, 실제 DB Table과 연결될 클래스이다.
 
 데이터베이스는 엑셀처럼 2차원 테이블이라고 생각하면 되는데, 이 테이블에 서비스에서 필요한 정보를 다 저장하고 활용하게 된다.
 
@@ -89,7 +89,23 @@ Service 는 Model이 데이터베이스에서 받아온 데이터를 전달받�
 
 ## DTO
 
-DTO(Data Transfer Object)란 계층간 데이터 교환을 위해 사용하는 객체(Java Beans)이다.
+DTO(Data Transfer Object)란 계층간 데이터 교환을 위해 Data를 변형해서 사용하는 객체(Java Beans)이다.
+
+**특징**
+
+로직을 가지고 있지 않으며, 순수하게 getter/setter로만 이루어져있는 객체이다.
+
+**사용 예시**
+
+모든 회원 정보를 불러와야 한다고 가정하자.
+
+User Table에는 회원의 이름, 성별, 나이, 핸드폰번호, 아이디, 비밀번호 등 많은 정보들이 존재한다.
+
+하지만, 나는 이름, 성별, 나이만 필요하다.
+
+User Table에 모든 데이터가 필요하지 않은 지금, Entity로 만들어 둔 class를 사용하기에는 보안상의 문제, 필요없는 값을 가지고 있다는 점에서 좋지 않다.
+
+이런 경우, 이름, 성별, 나이만 담는 DTO를 만들어 사용하자.
 
 ## MVC
 
@@ -121,9 +137,19 @@ Model 객체는 JSP에 컨트롤러에서 생성된 데이터를 담아서 전�
 
 ## DAO
 
+Data Access Object의 약자로 풀어 해석하면 Data에 직접 Access하는 객체를 의미한다.
+
 DAO는 데이터베이스를 조회, 조작하는 것을 전담하는 객체다. 
 
 VO(=DTO)를 통해 데이터베이스의 데이터와 매칭되는 객체를 생성한 후 데이터베이스의 데이터를 조회하거나 삽입, 삭제, 갱신할 수 있다.
 
+다시 말하면, 실제 DB에 접근하여 CRUD하는 객체를 말한다.
+
+ex) repository package에 해당한다.
+
+JPA의 경우 JPARepository를 사용하는 경우가 DAO의 예시라고 생각하면 된다.
+
 
 [스프링 구조 참조](https://coder-in-war.tistory.com/entry/Spring-12-DAO-DTO-Entity%EC%99%80-%EC%8A%A4%ED%94%84%EB%A7%81-%ED%8C%A8%ED%82%A4%EC%A7%80%EC%9D%98-%EC%A0%84%EC%B2%B4-%EA%B5%AC%EC%A1%B0)
+
+참고 : https://gh402.tistory.com/53
