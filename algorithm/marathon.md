@@ -1236,42 +1236,42 @@ value안에 index
 
 # 모의고사
 
-import java.util.ArrayList;
-import java.util.Arrays;
+         import java.util.ArrayList;
+         import java.util.Arrays;
 
 
-class Mock {
-    public int[] solution(int[] answers) {
-        int[] num1 = {1,2,3,4,5}, num2 = {2,1,2,3,2,4,2,5}, num3 = {3,3,1,1,2,2,4,4,5,5}; // 규칙을 찾아 넣으면 너무 복잡해져서 하드코딩으로 작업
-        int[] cnt = new int[3]; / 
+         class Mock {
+             public int[] solution(int[] answers) {
+                 int[] num1 = {1,2,3,4,5}, num2 = {2,1,2,3,2,4,2,5}, num3 = {3,3,1,1,2,2,4,4,5,5}; // 규칙을 찾아 넣으면 너무 복잡해져서 하드코딩으로 작업
+                 int[] cnt = new int[3]; / 
 
-        for (int i = 0; i < answers.length; i++) { 
-            if (answers[i] == num1[i%num1.length]) cnt[0]++; // i%length를 통해 반복되는 num를 구현
-            if (answers[i] == num2[i%num2.length]) cnt[1]++;
-            if (answers[i] == num3[i%num3.length]) cnt[2]++; // cnt[]를 통해 해당위치로 고정하여 차후 정렬할 필요X
-        }
+                 for (int i = 0; i < answers.length; i++) { 
+                     if (answers[i] == num1[i%num1.length]) cnt[0]++; // i%length를 통해 반복되는 num를 구현
+                     if (answers[i] == num2[i%num2.length]) cnt[1]++;
+                     if (answers[i] == num3[i%num3.length]) cnt[2]++; // cnt[]를 통해 해당위치로 고정하여 차후 정렬할 필요X
+                 }
 
-        int max = Math.max(Math.max(cnt[0],cnt[1]), cnt[2]); 
-        ArrayList<Integer> ary = new ArrayList<>(); // 배열의 크기가 변하므로 ArrayList를 사용
-        if (max == cnt[0]) ary.add(1);
-        if (max == cnt[1]) ary.add(2);
-        if (max == cnt[2]) ary.add(3);
+                 int max = Math.max(Math.max(cnt[0],cnt[1]), cnt[2]); 
+                 ArrayList<Integer> ary = new ArrayList<>(); // 배열의 크기가 변하므로 ArrayList를 사용
+                 if (max == cnt[0]) ary.add(1);
+                 if (max == cnt[1]) ary.add(2);
+                 if (max == cnt[2]) ary.add(3);
 
-        int[] answer = new int[ary.size()];
+                 int[] answer = new int[ary.size()];
 
-        for (int i = 0; i < answer.length; i++) {
-            answer[i] = ary.get(i);
+                 for (int i = 0; i < answer.length; i++) {
+                     answer[i] = ary.get(i);
 
-        }
+                 }
 
-        return answer;
-    }
-    public static void main(String[] args) {
-        Mock method = new Mock();
-        int[] a = {1,3,2,4,2};
-        System.out.println(Arrays.toString(method.solution(a)));
-    }
-}
+                 return answer;
+             }
+             public static void main(String[] args) {
+                 Mock method = new Mock();
+                 int[] a = {1,3,2,4,2};
+                 System.out.println(Arrays.toString(method.solution(a)));
+             }
+         }
 
 # 소수 만들기
 
@@ -1398,6 +1398,8 @@ class Mock {
          
   
   * 문제풀이
+
+
          public class ChangeNum {
              public int solution(String s) {
                  int answer = 0;
