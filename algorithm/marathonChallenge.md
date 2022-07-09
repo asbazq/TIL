@@ -19,12 +19,30 @@ class Solution {
 
 # 약수의 합
 
-  class Solution {
-      public int solution(int n) {
-          int answer = 0;
-           for (int i = 1; i <= n; i++) { // 약수이므로 1부터 int n까지
-              if (n % i == 0) answer += i;  // 약수 구하는 식
+      class Solution {
+          public int solution(int n) {
+              int answer = 0;
+               for (int i = 1; i <= n; i++) { // 약수이므로 1부터 int n까지
+                  if (n % i == 0) answer += i;  // 약수 구하는 식
+              }
+              return answer;
           }
-          return answer;
       }
-  }
+
+# 예산
+
+        import java.util.Arrays;
+
+        class Solution {
+         public int solution(int[] d, int budget) {
+                int answer = 0;
+                Arrays.sort(d); // 정렬하여 작은 수 먼저
+
+                for (int i = 0; i < d.length; i++) {
+                    budget -= d[i]; // 예산에서 빼줌
+                    if (budget < 0) break;
+                    answer++;
+                }
+                return answer;
+            }
+        }
