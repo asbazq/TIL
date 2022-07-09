@@ -91,6 +91,17 @@ Service 는 Model이 데이터베이스에서 받아온 데이터를 전달받�
 
 DTO(Data Transfer Object)란 계층간 데이터 교환을 위해 Data를 변형해서 사용하는 객체(Java Beans)이다.
 
+Spring boot는 기본적으로 아래와 같은 계층 간의 데이터 교환이 이루어집니다.
+
+![데이터 교환](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FlRsK2%2FbtqJWrHlHvO%2FA1dmCicOWPlVtwPKpopQck%2Fimg.png)
+
+|Layer|	객체|
+|---|---|
+|Presentation Layer	|Controller|
+|Business Layer|	Service|
+|Persistence Layer|	JDBC, ORM 등|
+|Database|	MySQL, MariaDB 등|
+
 **특징**
 
 로직을 가지고 있지 않으며, 순수하게 getter/setter로만 이루어져있는 객체이다.
