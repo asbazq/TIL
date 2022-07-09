@@ -69,7 +69,7 @@
         		@GetMapping("/api/search")
             @ResponseBody
             public List<ItemDto> getItems(@RequestParam String query) { // DispatcherServlet이 @RequestParam이라는 정보가 
-        			// ...                                   // 클라이언트에서 왔을 때 Controller로 전달
+        			// ...                                 // 클라이언트에서 왔을 때 Controller로 전달
         		}
         }
         ```
