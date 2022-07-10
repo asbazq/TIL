@@ -72,3 +72,47 @@ class Solution {
 
 ![image](https://user-images.githubusercontent.com/107836678/178115562-18f86fc3-7288-4f60-b2c6-6d1553ce92d2.png)
 
+# K번째수
+
+        import java.util.ArrayList;
+        import java.util.Arrays;
+        import java.util.Collections;
+
+        public class Solution {
+            public int[] solution(int[] array, int[][] commands) {
+                int[] answer = new int[commands.length];
+
+                ArrayList<Integer> ary = new ArrayList<>();
+                for (int i = 0; i < commands.length; i++) {
+                    for (int j = commands[i][0]; j <= commands[i][1]; j++) { 
+                        ary.add(array[j-1]); // n번째 숫자는 배열[n-1]이기 때문에 -1
+                        Collections.sort(ary);
+                    }
+                    answer[i] = ary.get(commands[i][2] - 1); // n번째 숫자는 배열[n-1]이기 때문에 -1
+                    ary.clear();
+                }
+
+                return answer;
+            }
+        }
+
+
+* 다른 풀이
+
+        import java.util.*;
+        class Solution {
+            public int[] solution(int[] array, int[][] commands) {
+                int[] answer = new int[commands.length];
+
+                for (int i = 0; i < commands.length; i++) {
+                    int[] temp = Arrays.copyOfRange(array, commands[i][0] - 1, commands[i][1]); 
+                                           // 원본 배열, 복사할 시작인덱스, 복사할 끝인덱스
+
+                    Arrays.sort(temp); // 배열 오름차순 정렬
+                    answer[i] = temp[commands[i][2] - 1];
+                }
+                return answer;
+            }
+        }
+        
+* Arrays.copyOfRange(원본 배열, 복사할 시작인덱스, 복사할 끝인덱스)
