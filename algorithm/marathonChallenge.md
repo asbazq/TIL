@@ -116,3 +116,23 @@ class Solution {
         }
         
 * Arrays.copyOfRange(원본 배열, 복사할 시작인덱스, 복사할 끝인덱스)
+
+# 소수 찾기
+
+        class Solution {
+            public int solution(int n) {
+                int answer = 0;
+
+                for (int i = 2; i <= n; i++) {
+                    boolean flag = true;
+                    for (int j = 2; j <= Math.sqrt(i); j++) { // Marh.sprt(i)를 사용하여 시간복잡도를 줄임
+                        if (i % j == 0) { // 나누어진다면 소수가 아님
+                            flag = false; // 해당 변수로 소수인지 아닌지 판단
+                            break;
+                        } 
+                    }
+                    if (flag) answer++;
+                }
+                return answer;
+            }
+        }
