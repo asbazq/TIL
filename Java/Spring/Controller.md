@@ -151,8 +151,9 @@ Controller를 하나에 다 몰아 사용할 경우의 문제점
     ![Service](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F326eac47-e0a1-4871-a29b-4e7d80704a84%2FUntitled.png?table=block&id=41202e27-8919-4996-a96a-1ae8ac605f0b&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=870&userId=&cache=v2)
     
     ![기능](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F6e98050f-e496-43b0-8eba-2e458055ea44%2FUntitled.png?table=block&id=93dc5d7d-6818-4c42-85fd-d02d4c53736c&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2)
+   *굳이 말하면 빨간 선 부분이지만 Repository에게 외주맡겨서 하는 느낌*
    
-    - 사용자의 요구사항을 처리 ('비즈니스 로직') 하는 **실세 중에 실세!!!** 굳이 말하면 빨간 선 부분이지만 Repository에게 외주맡겨서 하는 느낌
+    - 사용자의 요구사항을 처리 ('비즈니스 로직') 하는 **실세 중에 실세!!!** 
         - 현업에서는 서비스 코드가 계속 비대해짐
     - DB 정보가 필요할 때는 Repository 에게 요청
     
