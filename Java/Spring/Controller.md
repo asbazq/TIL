@@ -114,3 +114,50 @@ public class UserLoginServlet extends HttpServlet {
        }
 </p>
 </details>
+
+## AllInOneController의 문제점
+
+Controller를 하나에 다 몰아 사용할 경우의 문제점
+
+1. 한 개의 클래스에 너무 많은 양의 코드가 존재
+    1. 코드 이해가 어려움: 처음부터 끝까지 다 읽어야 코드 내용을 이해할 수 있음
+2. 현업에서는 코드 추가 혹은 변경 요청이 계속 생김
+    
+    [변경 요청의 예]
+    
+    1. 신규 상품 등록 시 Client 에게 응답 (Response) 하는 값 변경
+        1. 등록된 Product 전체 정보 → 등록된 Product 의 id
+    2. 최저가 (Myprice) 업데이트 조건 변경
+        1. Client 가 최저가를  0원 이하로 입력 → 에러 발생
+    3. DB 테이블 이름 변경
+        1. Product 테이블의 **lprice** → **lowprice** 변경
+
+따라서  Controller, Service, Repository로 역할을 분리함
+
+1. **Controller**
+    
+    
+    ![controller](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F9ab055dc-a05c-475b-9ca1-f7b986983024%2FUntitled.png?table=block&id=c3cb34db-cdf5-4125-b5e1-020fabe2d7ef&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=780&userId=&cache=v2)
+    
+    - 클라이언트의 요청을 받음
+    - 요청에 대한 처리는 서비스에게 전담
+    - 클라이언트에게 응답
+    
+2. **Service**
+    
+    ![Service](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F326eac47-e0a1-4871-a29b-4e7d80704a84%2FUntitled.png?table=block&id=41202e27-8919-4996-a96a-1ae8ac605f0b&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=870&userId=&cache=v2)
+    
+    - 사용자의 요구사항을 처리 ('비즈니스 로직') 하는 **실세 중에 실세!!!**
+        - 현업에서는 서비스 코드가 계속 비대해짐
+    - DB 정보가 필요할 때는 Repository 에게 요청
+    
+3. **Repository**
+    
+    ![Repository](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F914029fa-aa47-4ddd-96e1-c41e9d090332%2FUntitled.png?table=block&id=b6157b34-f382-488b-bf7d-5cec6e849f1e&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=760&userId=&cache=v2)
+    
+    - DB 관리 (연결, 해제, 자원 관리)
+    - DB CRUD 작업 처리
+    
+**전체 처리과정**
+
+![ALL](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F25b09b2a-863b-4fa5-9ac0-1eab0f31bdba%2FUntitled.png?table=block&id=25a373f0-2449-44b4-bea6-884509660860&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=1770&userId=&cache=v2)
