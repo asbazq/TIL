@@ -3,7 +3,7 @@ public class는 고유명사,
 
 Exception in thread "main" java.lang.NullPointerException 
 
-	at aa.bb.cc.NullPointerException.main(NullPointerException.java:7) 와 같은 에러가 뜬다. 왜냐면, java.lang 패키지 안에 있는 클래스인 Integer의 참조변수인 myInteger가 null값을 가지니 intValue()를 불러오는데 에러가 생긴 거다. 혹은 변수 크기 미설정
+at aa.bb.cc.NullPointerException.main(NullPointerException.java:7) 와 같은 에러가 뜬다. 왜냐면, java.lang 패키지 안에 있는 클래스인 Integer의 참조변수인 myInteger가 null값을 가지니 intValue()를 불러오는데 에러가 생긴 거다. 혹은 변수 크기 미설정
 
 
 
