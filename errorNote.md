@@ -53,3 +53,8 @@ Multiple markers at this line
  missing return statement
  
  모든 경우에 대한 return 값을 가지도록 한다.
+ 
+ expected "identifier"; SQL statement
+ 
+ 테이블 이름과 SQL명령어 중복
+ 테이블 이름을 바꾸거나 @Table(name = "")을 사용한다
