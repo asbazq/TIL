@@ -58,3 +58,6 @@ Multiple markers at this line
  
  테이블 이름과 SQL명령어 중복
  테이블 이름을 바꾸거나 @Table(name = "")을 사용한다
+ 
+ No property 'xxx' found for type 'xxxx' Did you mean ''xxxxx''
+ 해당 Colum을 찾지 못해서 발생하는 오류 Colum가 철자가 다르거나 
