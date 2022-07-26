@@ -61,3 +61,6 @@ Multiple markers at this line
  
  No property 'xxx' found for type 'xxxx' Did you mean ''xxxxx''
  해당 Colum을 찾지 못해서 발생하는 오류 Colum가 철자가 다르거나 
+ 
+ Error creating bean with name, No property '' found for type ''!
+ 빈 생성 에러 type''에 property ''가 없다 따라서 type에 property생성
