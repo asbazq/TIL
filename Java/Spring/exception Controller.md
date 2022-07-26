@@ -110,11 +110,7 @@ ResponseEntity는 사용자의 HttpRequest에 대한 응답 데이터를 포함�
 
 ResponseEntity의 생성자를 보면 this( )를 통해서 매개변수가 3개인 생성자를 호출해 결국엔 아래 보이는 매개변수가 3개인 생성자로 가게된다. 
 
-    public ResponseEntity(HttpStatus status) {
-      this(null, null, status);
-    }
-
-    public ResponseEntity(body, Headers, HttpStatus status) {
+    public ResponseEntity(@nullable body, @nullable Headers, HttpStatus status) {
       this(body, Headers, status);
     }
     
