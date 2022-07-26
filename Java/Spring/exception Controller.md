@@ -1,6 +1,7 @@
 # @ExceptionHandler
 
 @ExceptionHandler같은 경우는 @Controller, @RestController가 적용된 Bean내에서 발생하는 예외를 잡아서 하나의 메서드에서 처리해주는 기능을 한다.
+
 → @ExceptionHandler({ Exception1.class, Exception2.class}) 이런식으로 두 개 이상 등록
 
 **주의사항/알아 둘 것**
