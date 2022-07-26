@@ -93,7 +93,7 @@ login모듈에 있는 RestController에서 발생하는 예외를 잡으려면 �
 
 출처: https://jeong-pro.tistory.com/195 [기본기를 쌓는 정아마추어 코딩블로그:티스토리]
 
-# @ResponseEntity
+# ResponseEntity
 
 Spring Framework에서 제공하는 클래스 중 HttpEntity라는 클래스가 존재한다. 이것은 HTTP 요청(Request) 또는 응답(Response)에 해당하는 HttpHeader와 HttpBody를 포함하는 클래스이다. 
 
