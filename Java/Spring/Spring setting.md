@@ -9,6 +9,8 @@
 7. spring boot DevTool
 8. Mustache
 
+build.gradle
+
         dependencies {
           implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
           implementation 'org.springframework.boot:spring-boot-starter-mustache'
@@ -21,3 +23,33 @@
           annotationProcessor 'org.projectlombok:lombok'
           testImplementation 'org.springframework.boot:spring-boot-starter-test'
           testImplementation 'org.springframework.security:spring-security-test'
+
+application.yml
+
+        server:
+          port: 8080
+          servlet:
+            context-path: /
+            encoding:
+              charset: UTF-8
+              enabled: true
+              force: true
+
+        spring:
+          datasource:
+            driver-class-name: com.mysql.cj.jdbc.Driver
+            url: jdbc:mysql://localhost:3306/security?serverTimezone=Asia/Seoul
+            username: cos
+            password: cos1234
+
+          mvc:
+            view:
+              prefix: /templates/
+              suffix: .mustache
+
+          jpa:
+            hibernate:
+              ddl-auto: update #create update none
+              naming:
+                physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+            show-sql: true
