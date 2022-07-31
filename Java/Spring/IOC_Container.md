@@ -8,6 +8,7 @@ DI 를 사용하기 위해서는 객체 생성이 우선 되어야 한다. 객�
 
 1. @Component
     - 클래스 선언 위에 설정
+    - @Component를 갖는 어노테이션으로 @Controller, @Service, @Repository 등이 있으며, @Configuration 역시 안에 @Component를 가지고 있다.
         
         ```java
         @Component
@@ -52,8 +53,12 @@ DI 를 사용하기 위해서는 객체 생성이 우선 되어야 한다. 객�
             ![Untitled](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2F5842f7f3-f23d-434f-940e-6ccef4ec0b12%2FUntitled.png?table=block&id=7a835ed7-8e7a-471c-8648-19ab2f15b222&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=2000&userId=&cache=v2)
      
             
-2. @Bean
+2. @Bean, @Configuration
+
+
     - 직접 객체를 생성하여 빈으로 등록 요청
+    - 설정 클래스는 다음과 같이 @Configuration 어노테이션을 클래스에 붙여주면 되는데, @Bean을 사용해 수동으로 빈을 등록해줄 때에는 메소드 이름으로 빈 이름이 결정된다. 
+
         - **[코드스니펫] BeanConfiguration**
             
             ```java
@@ -87,10 +92,18 @@ DI 를 사용하기 위해서는 객체 생성이 우선 되어야 한다. 객�
         
         - 스프링 '빈' 이름: @Bean 이 설정된 함수명
             - public ProductRepository **productRepository()** {..} → **productRepository**
+            - 그러므로 중복된 빈(bean) 이름이 존재하지 않도록 주의
             
     - '빈' 아이콘 확인 → 스프링 IoC 에 '빈' 에 등록될 것이라는 표시
         
         ![Untitled](https://teamsparta.notion.site/image/https%3A%2F%2Fs3-us-west-2.amazonaws.com%2Fsecure.notion-static.com%2Fb513f3d9-2a4f-473c-8d46-1f41080e98d7%2FUntitled.png?table=block&id=2d877c01-3bcb-4b6b-9379-4387fafd1d72&spaceId=83c75a39-3aba-4ba4-a792-7aefe4b07895&width=1660&userId=&cache=v2)
+        
+- @Configuration 안에서 @Bean이 빈으로 등록되는 과정
+
+    - 스프링 컨테이너는 @Configuration이 붙어있는 클래스를 자동으로 빈으로 등록해두고, 해당 클래스를 파싱해서 @Bean이 있는 메소드를 찾아서 빈을 생성해준다.
+    -  @Bean을 사용하는 클래스에는 반드시 @Configuration 어노테이션을 활용하여 해당 클래스에서 Bean을 등록한다. (@Bean으로 직접 빈을 등록해주는 것도 동작은 한다.)
+    -   하지만 @Configuration 안에서 @Bean을 사용해야 싱글톤을 보장받을 수 있으므로 @Bean 어노테이션은 반드시 @Configuration과 함께 사용해주어야 한다.
+
         
 ## 빈사용 방법
 
@@ -183,3 +196,6 @@ DI 를 사용하기 위해서는 객체 생성이 우선 되어야 한다. 객�
               // ...		
           }
           ```
+
+
+참고 블로그 : https://mangkyu.tistory.com/75
