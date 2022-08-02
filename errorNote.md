@@ -64,3 +64,22 @@ Multiple markers at this line
  
  Error creating bean with name, No property '' found for type ''!
  빈 생성 에러 type''에 property ''가 없다 따라서 type에 property생성
+ 
+ **스프링 빈의 순환 종속성(Circular dependencies)**
+ errorCode : Unsatisfied dependency expressed through constructor parameter
+  - 클래스 A와 B의 Bean이 서로 주입되도록 구성하면 Spring IoC 컨테이너는 런타임시이 순환 참조를 감지하고 BeanCurrentlyInCreationException을 발생
+  - 해결하기 위해 아래와 같이 @Lazy 어노테이션을 추가한다
+    - 당장 시작은 null 로 할당됩니다. 그리고 잘 동작합니다.
+    - 그러나 bComponent 는 final 이기 때문에 이후에도 어떻게 변경 할 수가 없다.
+    -  그래서 Spring Framework 는 AComponent 전체를 Proxy로 만들어서 처리
+
+
+           @Component
+           public class AComponent {
+               private final BComponent bComponent;
+
+               public AComponent(@Lazy BComponent bComponent) {
+                   log.info( "bComponent is {}", bComponent);
+                   this.bComponent = bComponent;
+               }
+           }
