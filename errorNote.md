@@ -66,6 +66,7 @@ Multiple markers at this line
  빈 생성 에러 type''에 property ''가 없다 따라서 type에 property생성
  
  **스프링 빈의 순환 종속성(Circular dependencies)**
+ 
  errorCode : Unsatisfied dependency expressed through constructor parameter
   - 클래스 A와 B의 Bean이 서로 주입되도록 구성하면 Spring IoC 컨테이너는 런타임시이 순환 참조를 감지하고 BeanCurrentlyInCreationException을 발생
   - 해결하기 위해 아래와 같이 @Lazy 어노테이션을 추가한다
