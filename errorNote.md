@@ -84,3 +84,10 @@ Multiple markers at this line
                    this.bComponent = bComponent;
                }
            }
+
+
+**@Builder 사용시 초기화할 필드가 있다면**
+
+errorCode : @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
+
+@Builder 는 초기화 표현을 완전히 무시한다. 초기화 하고 싶으면 @Builder.Default or final 를 
