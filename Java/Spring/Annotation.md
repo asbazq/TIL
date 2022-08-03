@@ -125,3 +125,35 @@ findUser는 User 객체를 그대로 반환하고 있습니다. 이러한 경우
 그래서 객체를 상황에 맞는 ResponseEntity로 감싸서 반환해주어야 합니다.
 
 출처: https://mangkyu.tistory.com/49 [MangKyu's Diary:티스토리]
+
+## 생성자 생성
+
+@NoArgsConstructor : 파라미터가 없는 기본 생성자를 생성
+
+@AllArgsConstructor : 모든 필드 값을 파라미터로 받는 생성자를 만듦
+
+@RequiredArgsConstructor : final이나 @NonNull인 필드 값만 파라미터로 받는 생성자 만듦
+
+        @NoArgsConstructor
+        @RequiredArgsConstructor
+        @AllArgsConstructor
+        public class User {
+
+          private Long id;
+
+          @NonNull
+          private String name;
+
+          @NonNull
+          private String pw;
+
+          private int age;
+
+        }
+
+
+생성자 모습
+
+        User user1 = new User(); // @NoArgsConstructor
+        User user2 = new User("user2", "1234"); // @RequiredArgsConstructor
+        User user3 = new User(1L, "user3", "1234", null); // @AllArgsConstructor
