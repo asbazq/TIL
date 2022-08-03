@@ -65,6 +65,17 @@ Multiple markers at this line
  Error creating bean with name, No property '' found for type ''!
  빈 생성 에러 type''에 property ''가 없다 따라서 type에 property생성
  
+ ErrorCode : creating bean with name "XXXController"
+
+- Controller 빈 생성 에러가 발생 했다면 servlet-context.xml 같은 servlet을 확인해서  	<context:component-scan base-package="패키지명" />에 현재 작업중인 프로젝트의 패키지명, 즉 컨트롤러가 포함된 패키지의 위치를 정확하게 기재(그냥 컨트롤러에 패키지를 그대로 복사해서 넣으시는 걸 추천) 
+- @Controller 어노테이션이 없어서 일수도 있다
+
+ErrorCode : Unsatisfied dependency expressed through field
+
+위 에러와 동시에 일어나는 경우가 많음
+
+위와 동일하게 @Service, @Repository가 없어서 
+ 
  **스프링 빈의 순환 종속성(Circular dependencies)**
  
  errorCode : Unsatisfied dependency expressed through constructor parameter
