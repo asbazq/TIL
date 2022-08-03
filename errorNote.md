@@ -91,3 +91,18 @@ Multiple markers at this line
 errorCode : @Builder will ignore the initializing expression entirely. If you want the initializing expression to serve as default, add @Builder.Default. If it is not supposed to be settable during building, make the field final.
 
 @Builder 는 초기화 표현을 완전히 무시한다. 초기화 하고 싶으면 @Builder.Default or final 를 
+
+**build 시 오류**
+
+errorCode :  Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException at ConstructorResolver.java:800
+
+maven은 기본적으로 프로필 파일을 읽어오지만, gradle에서 properties를 못읽어 오기때문에 직접 넣어줘야된다.
+
+    sourceSets {
+                main {
+                    resources {
+                        srcDirs("src/main/resources")
+                    }
+                }
+            }
+
