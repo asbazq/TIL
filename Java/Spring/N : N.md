@@ -18,6 +18,7 @@ JPA 의 경우는 Enitity 클래스의 필드 위에 연관관계 어노테이�
 일대일 (1:1)	|@OneToOne|	Order (1) : Coupon (1)|	배달 주문 1개 주문 시, 쿠폰 1개만 할인 적용 가능|
 다대다 (N:N)	|@ManyToMany|	User (N) : Restaurant(N)|	고객은 음식점 여러개 찜 가능, 음식점은 고객 여러명에게 찜 가능|
 
+> @ManyToMany를 사용하기 보다는 @ManyToOne으로 나눠서 사용하기를 권장
 **항상 Enitity 본인 중심으로 관계를 생각!**
 
 - 주문 (Order) 코드
