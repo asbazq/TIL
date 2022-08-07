@@ -92,7 +92,7 @@ Json 형태로 받은 HTTP Body 데이터를 MessageConverter를 통해 변환�
 값을 주입하지 않고 변환을 시키므로(엄밀히는 Reflection을 사용하여 할당), 변수들의 생성자나 Setter함수가 없어도 정상적으로 값이 할당됨
 
 
-ModelAttribute
+* ModelAttribute
 
 multipart/form-data 형태로 받은 HTTP Body 데이터와 HTTP 파라미터들을 Setter를 통해 1대1로 객체에 바인딩시킴
 
