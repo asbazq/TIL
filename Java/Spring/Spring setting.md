@@ -5,7 +5,7 @@
 3. H2 Database
 4. Spring Data JPA
 5. Lombok
-6. Spring securuty
+6. Spring security
 7. spring boot DevTool
 8. Mustache
 
