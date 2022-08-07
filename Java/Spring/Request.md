@@ -7,13 +7,13 @@
 
 ## req.param
 
-- 주소에 포함된 변수를 담는다. 예를 들어 https://naver.com/post/12345 라는 주소가 있다면 12345를 담는다.
+- 주소에 포함된 변수를 담는다. 예를 들어 `https://naver.com/post/12345`라는 주소가 있다면 12345를 담는다.
 - 서버에서 Path Variable 로 칭한다.
 
 ## req.query
 
-- 주소 바깥, ? 이후의 변수를 담는다. 예를 들어 https://okky.com/post?q=Node.js 일 경우 Node.js를 담는다
-- &로 연결하여 여러 개의 데이터를 넘길 수 있다. https://naver.com/post?post_id=1235&key=value
+- 주소 바깥, ? 이후의 변수를 담는다. 예를 들어`https://okky.com/post?q=Node.js`일 경우 Node.js를 담는다
+- &로 연결하여 여러 개의 데이터를 넘길 수 있다. `https://naver.com/post?post_id=1235&key=value`
 - 서버에서 Query parameter 로 칭한다.
 
 ## req.body
