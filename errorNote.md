@@ -117,3 +117,11 @@ maven은 기본적으로 프로필 파일을 읽어오지만, gradle에서 prope
                 }
             }
 
+**passwordEncoder**
+
+errorCode : Parameter 1 of constructor in com.example.zaritalk.service.UserService required a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' that could not be found.
+
+passwordEncoder 가 빈으로 등록되지 않아서 생기는 문제
+ 
+WebCoSecurityConfig에 BCryptPasswordEncoder를 빈으로 등록
+
