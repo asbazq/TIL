@@ -125,3 +125,8 @@ passwordEncoder 가 빈으로 등록되지 않아서 생기는 문제
  
 WebCoSecurityConfig에 BCryptPasswordEncoder를 빈으로 등록
 
+
+**CorsError**
+ When allowCredentials is true, allowedOrigins cannot contain the special value "*" since that cannot be set on the "Access-Control-Allow-Origin" response header. 
+ - AllowCredentials(true)일 경우, AllowedOrigin("*") 설정할 수 없다.
+ - AllowedOrigin("*") -> AllowedOriginPattern("*")로 
