@@ -8,6 +8,7 @@
 6. Spring security
 7. spring boot DevTool
 8. Mustache
+9. tomcat
 
 build.gradle
 
@@ -23,6 +24,7 @@ build.gradle
           annotationProcessor 'org.projectlombok:lombok'
           testImplementation 'org.springframework.boot:spring-boot-starter-test'
           testImplementation 'org.springframework.security:spring-security-test'
+          implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
 
 application.yml
 
