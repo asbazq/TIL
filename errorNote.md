@@ -131,3 +131,10 @@ WebCoSecurityConfig에 BCryptPasswordEncoder를 빈으로 등록
  When allowCredentials is true, allowedOrigins cannot contain the special value "*" since that cannot be set on the "Access-Control-Allow-Origin" response header. 
  - AllowCredentials(true)일 경우, AllowedOrigin("*") 설정할 수 없다.
  - AllowedOrigin("*") -> AllowedOriginPattern("*")로 
+
+**종송성 추가Error**
+
+errorCode :
+  removeContentEntry: removed content entry url 'file://C:/Users/User/Desktop/spring/uandmeet/build/generated/sources/annotationProcessor/java/main' still exists after removing
+  
+  project-dir/.idea/compiler.xml, project-dir/.idea/modules.xml 를 삭제
