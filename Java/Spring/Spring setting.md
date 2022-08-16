@@ -9,6 +9,11 @@
 7. spring boot DevTool
 8. Mustache
 9. tomcat
+10. thymeleaf
+11. oauth2
+12. mail
+13. support
+14. redis
 
 build.gradle
 
@@ -25,6 +30,11 @@ build.gradle
           testImplementation 'org.springframework.boot:spring-boot-starter-test'
           testImplementation 'org.springframework.security:spring-security-test'
           implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-jasper'
+          implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+          implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
+          implementation 'org.springframework.boot:spring-boot-starter-mail'
+          implementation group: 'org.springframework', name: 'spring-context-support', version: '5.3.8'
+          implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 
 application.yml
 
