@@ -98,6 +98,72 @@ Accept header를 사용한다.
 - Ex) GET : /users/{use
 
 
+# REST 란 ?
+REST(Representational State Transfer, 자원의 상태 전달)
+네트워크 아키텍쳐 원리
+
+# RESTful 이란 ?
+아래의 몇가지 조건이 잘 지켜진 api가 있을때 RESTful 한 api 라고 할 수 있다.
+
+1. Client, Server : 클라이언트와 서버가 서로 독립적, 분리
+2. Stateless : 요청에 대해서 클라이언트의 상태가 서버에 저장되지 않는다.
+ - 요청하는 값을 즉각 요청
+ - ex) 햄버거 가게에서 주문할때, 치즈버거 주문 , 치즈버거 + 콜라 각각 주문, 전에 주문한걸 기억하지 않는다.
+3. 캐시 : 클라이언트는 서버의 응답을 캐시 할 수 있다.
+ - 클라이언트가 캐시를 통해서 응답을 재사용 할 수 있어야 하며, 이를 통해 서버의 부하를 낮출 수 있다.
+4. 계층화(Layered System) : 서버와 클라이언트 사이에, 방화벽, 게이트웨이, Proxy등 다계층 형태를 구성할 수 있어야 하며, 확장 할 수 있어야함
+5. 인터페이스 일관성 : 아키텍쳐를 단순화 시키고 작은 단위로 분리해서, 클라이언트, 서버가 독립적으로 개선될 수 있어야 한다.
+6. Code On Demand (Optional) : 자바 애플릿, 자바스크립트 플래시 등 특정 기능을 서버가 클라이언트에 코드를 전달하여 실행 할 수 있어야 한다.
+ - ex) JavaScript
+
+
+## 인터페이스 일관성
+1.자원 식별
+ - 리소스 접근 -> URI 사용
+ - http://sample.co.kr/user/100
+ - Resource : user
+ - 식별자 : 100
+2. 메시지를 통한 리소스 조작
+ - 웹에서는 다양한 방법으로 데이터 전송 가능
+ - HTML, XML, JSON, TEXT ..
+ - 리소스 타입 알려주기 위해 header 부분에 content-type을 통해 알려줌
+3. 자기 서술적 메시지
+ - 요청하는 데이터가 어떻게 처리되어져야 하는지 충분한 데이터 포함
+ - HTTP 기반의 REST에서는 HTTP Method와 Header의 정보로 이를 표현
+4. 애플리케이션 상태에 대한 엔진으로서 하이퍼 미디어
+ - REST API의 개발에는 단순히 Client 요청에 대한 데이터만 내리는게 아닌 관련된 리소스에 대한 Link 정보까지 같이 포함
+
+
+## URI 설계(REST API 설계)
+1. URI(Uniform Resource Identifier)
+인터넷에서 특정 자원을 나타내는 주소값, 해당 값은 유일
+ex) http://naver.com/resource/sample/1
+response : sample1.pdf
+
+2. URL(Uniform Resource Locator) -> URI의 하위 개념
+인터넷상에서의 자원, 특정 파일이 어디에 위치 하는지 식별 하는 주소
+ex) http://www.naver.com/sample1.pdf
+
+## URI 설계(설계 원칙 RFC-3986)
+1. / 는 계층관계 나타내는데 사용
+2. URI 마지막 으로 / 포함하지 않는다
+3. 은 가독성 높이는데 사용
+4. 밑줄(_) 사용하지 않음
+5. URI 경로는 소문자
+6. 파일 확장자는 URI에 포함하지 않는다
+7. 프로그래밍언어에 의존적인 확장자를 사용하지 않는다
+8. 구현에 의존적인 경로 사용하지 않는다(servelet..)
+9. 세션 ID를 포함하지 않는다
+10. 프로그래밍 언어의 Method명을 이용하지 않는다
+11. 명사에 단수형보다는 복수형을 사용 -> 컬렉션에 대한 표현
+12. 컨트롤러 이름은 동사나 동사구 사용
+13. 경로 부분중 변하는 부분은 유일한 값으로 대체
+14. CRUD 기능을 나타내는 것은 URI 에 사용하지 않는다
+15. URI Query Parameter 디자인 -> 컬렉션 결과 필터링 가능(page,sort..)
+16. API에 있어서 서브 도메인은 일관성있게 사용해야함
+17. 클라이언트 개발자 포탈 서브 도메인 일관성있게 만든다
+
+
 참고 : https://gmlwjd9405.github.io/2018/09/21/rest-and-restful.html
 
 [참고 유튜브](https://www.youtube.com/watch?v=iOueE9AXDQQ&ab_channel=%EC%96%84%ED%8C%8D%ED%95%9C%EC%BD%94%EB%94%A9%EC%82%AC%EC%A0%84)
