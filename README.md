@@ -3,6 +3,9 @@
  * 당일 깨달은 내용 정리
 
 [Namjun Kim](https://github.com/namjunemy)님, [RingoPPA](https://github.com/ksu3101)님의 Github TIL 참조.
+# 로드맵
+
+![로드맵](https://velog.velcdn.com/images/jo_dbsgh95/post/6c391921-a6ec-4839-ba23-4490c1c5ebfc/image.png)
 
 ## 작성 규칙
 
